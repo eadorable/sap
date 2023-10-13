@@ -49,6 +49,7 @@ gem "sassc-rails"
 # gem "image_processing", "~> 1.2"
 
 gem "bootstrap", "~> 5.2"
+gem "faker"
 gem "devise"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
@@ -73,7 +74,14 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
+  gem "capybara" # <-- Already there
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 6.0.0'
+  gem "rubocop-rspec"
+  gem "rubocop-capybara"
   gem "selenium-webdriver"
+  gem 'warden-rspec-rails'
+	gem 'shoulda-matchers', '~> 5.0'
+  gem "webdrivers"
 
 end
