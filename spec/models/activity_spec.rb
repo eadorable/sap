@@ -5,5 +5,8 @@ RSpec.describe Activity, type: :model do
   context 'activity' do
     it { is_expected.to validate_presence_of :activity_name }
     it { is_expected.to validate_presence_of :address }
+    it { is_expected.to validate_presence_of :description }
+    it { is_expected.to validate_presence_of :description }
+    it { is_expected.to validate_presence_of :equipment }
   end
 end
