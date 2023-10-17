@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_many :activities_as_organizer, class_name: 'Activity', foreign_key: 'organizer_id'
-  has_many :activities_as_participant, class_name: 'Activity', foreign_key: 'participant_id'
+  has_many :bookings, foreign_key: 'participant_id', class_name: 'Booking'
+  has_many :activities, foreign_key: 'owner_id', class_name: 'Activity'
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

@@ -10,41 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_16_131143) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_17_091130) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "activities", force: :cascade do |t|
-    t.string "activity_name"
+    t.string "name"
     t.string "address"
     t.datetime "date_time"
     t.text "description"
-    t.bigint "user_id", null: false
     t.integer "difficulty"
     t.string "equipment"
+    t.bigint "category_id", null: false
+    t.bigint "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_activities_on_user_id"
+    t.index ["category_id"], name: "index_activities_on_category_id"
+    t.index ["owner_id"], name: "index_activities_on_owner_id"
   end
 
   create_table "bookings", force: :cascade do |t|
     t.boolean "status"
-    t.bigint "organizer_id", null: false
-    t.bigint "participant_id", null: false
     t.bigint "activity_id", null: false
+    t.bigint "participant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_bookings_on_activity_id"
-    t.index ["organizer_id"], name: "index_bookings_on_organizer_id"
     t.index ["participant_id"], name: "index_bookings_on_participant_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.bigint "activity_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["activity_id"], name: "index_categories_on_activity_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,9 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_16_131143) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "activities", "users"
+  add_foreign_key "activities", "categories"
+  add_foreign_key "activities", "users", column: "owner_id"
   add_foreign_key "bookings", "activities"
-  add_foreign_key "bookings", "users", column: "organizer_id"
   add_foreign_key "bookings", "users", column: "participant_id"
-  add_foreign_key "categories", "activities"
 end
