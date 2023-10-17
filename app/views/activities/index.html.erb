@@ -1,5 +1,12 @@
 <h1>This is Activity page!</h1>
 
 <% @activities.each do |activity| %>
-  <%= activity.name %>
+<div class="card">
+    <p>activity name: <%=link_to activity.name %></p>
+    <p>address: <%= activity.address %></p>
+    <p>equipment: <%= activity.equipment %></p>
+    <p>description: <%= activity.description %></p>
+    <p>email: <%= activity.date_time %></p>
+    <p>difficulty 1 to 5: <%= activity.difficulty %></p>
+</div>
 <% end%>
