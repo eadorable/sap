@@ -50,11 +50,13 @@ end
 
 puts "Creating activities..."
 difficulty = [1, 2, 3, 4, 5] # Create an array with the difficulties
+name = ['Football', 'Basketball', 'Tennis', 'Volleyball', 'Running', 'Swimming', 'Cycling', 'Hiking', 'Golf', 'Baseball']
+
 10.times do
   Activity.create!(
-    name: 'Hiking',
+    name: name.sample,
     address: Faker::Address.full_address,
-    date_time: Faker::Time,
+    date_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
     description: Faker::Lorem.sentence(word_count: 10),
     owner: users.sample,  # Use sample to select a random user
     difficulty: difficulty.sample,
