@@ -13,7 +13,10 @@
               </div>
               <div class="col-md-12"><%= f.input :name %></div>
               <div class="col-md-12"><%= f.input :address %></div>
-              <div class="col-md-12"><%= f.input :date_time %></div>
+
+              <%= f.input :date_time,
+                            as: :string,
+                            input_html: { data: { controller: "datepicker" } } %>
               <div class="col-md-12"><%= f.input :difficulty, collection: levels %></div>
               <div class="col-md-12"><%= f.input :equipment %></div>
               <div class="col-md-12"><%= f.input :description %></div>
