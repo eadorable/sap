@@ -4,20 +4,23 @@
       <div class="card mt-2">
         <div class="m-2">
           <div class="card-body">
-            <h4 class="card-title">New Activity</h4>
+            <h4 class="card-title text-center mb-5">New Activity</h4>
             <%= simple_form_for(@activity) do |f| %>
               <% levels = [1,2,3,4,5] %>
-              <div class="col-md-12 d-flex justify-content-around">
-                <strong><%= f.label :Category %></strong>
-                <%= f.collection_radio_buttons :category_id, Category.all, :id, :name %>
+
+              <div class="row mb-3">
+                <div class="col-md-12">
+                  <div><%= f.label :Category, required: true %></div>
+                  <div class="d-flex justify-content-around"><%= f.collection_radio_buttons :category_id, Category.all, :id, :name %></div>
+                </div>
               </div>
+
               <div class="col-md-12"><%= f.input :name %></div>
               <div class="col-md-12"><%= f.input :address %></div>
 
-              <%= f.input :date_time,
-                            as: :string,
-                            input_html: { data: { controller: "datepicker" } } %>
-              <div class="col-md-12"><%= f.input :difficulty, collection: levels %></div>
+              <div class="col-md-12"><%= f.input :date_time, as: :string, input_html: { data: { controller: "datepicker" } } %></div>
+
+              <div class="col-md-12"><%= f.input :difficulty, collection: levels, required: true %></div>
               <div class="col-md-12"><%= f.input :equipment %></div>
               <div class="col-md-12"><%= f.input :description %></div>
               <div class="col-md-12"><%= f.submit "Save", class: "btn btn-primary" %></div>
