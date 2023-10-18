@@ -1,8 +1,12 @@
 <div class="container">
-    <!-- Activity Image (We can incorporate Carousel again) -->
+    <!-- Activity Image -->
     <div class="row">
         <div class="col-12 mt-3">
-            <%= image_tag "bar.png", alt: "Bar image", class: "img-fluid" %>
+            <% if @activity.present? %>
+                <%= image_tag @activity.image_url, alt: "Activity Image", class: "img-fluid" %>
+            <% else %>
+                <p>Activity Name</p>
+            <% end %>
         </div>
     </div>
 
@@ -13,14 +17,12 @@
                 <div class="card-body">
                     <!-- Activity Description -->
                     <div class="description-container">
-                        <h5 class="card-title my-3">New in Berlin - Internationals</h5>
-                        <p class="card-text mb-3">
-                            Hey Internationals in Berlin,
-
-                            Everybody is welcome to join the event, to meet friends or like-minded people. The place is a perfect place to mingle, relax, and enjoy.
-
-                            What better way to end a Thursday than having a good time and meeting people from all over the world.
-                        </p>
+                        <% if @activity.present? %>
+                            <h5 class="card-title my-3"><%= @activity.name %></h5>
+                            <p class="card-text mb-3"><%= @activity.description %></p>
+                        <% else %>
+                            <p>Activity details</p>
+                        <% end %>
                     </div>
                 </div>
             </div>
@@ -30,8 +32,8 @@
     <!-- Map -->
     <div class="row">
         <div class="col-12">
-            <!-- Add the map API here (Mapbox / Google Maps). For now there is an image of a map -->
-              <%= image_tag "staticmapforbar", alt: "Map image", class: "img-fluid mt-3" %>
+            <!-- Add the map API here (Mapbox / Google Maps). For now, there is an image of a map -->
+            <%= image_tag "staticmapforbar", alt: "Map image", class: "img-fluid mt-3" %>
             <div id="map" style="height: 300px;"></div>
         </div>
     </div>
