@@ -136,7 +136,6 @@ GEM
       railties (>= 6.0.0)
     io-console (0.6.0)
     irb (1.8.3)
-    irb (1.8.3)
       rdoc
       reline (>= 0.3.8)
     jbuilder (2.11.5)
@@ -169,6 +168,8 @@ GEM
       net-protocol
     nio4r (2.5.9)
     nokogiri (1.15.4-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.23.0)
@@ -322,6 +323,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   autoprefixer-rails
@@ -337,8 +339,8 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   pg (~> 1.1)
-  psych (~> 3.0)
   pg_search (~> 2.3)
+  psych (~> 3.0)
   puma (~> 5.0)
   rails (~> 7.0.8)
   rspec-rails (~> 6.0.0)
