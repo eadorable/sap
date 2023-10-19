@@ -3,6 +3,10 @@ class ActivitiesController < ApplicationController
     @activities = Activity.all
   end
 
+  def show
+    @activity = Activity.find_by(id: params[:id])
+  end
+
   def new
     @activity = Activity.new
   end
@@ -20,6 +24,7 @@ class ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.require(:activity).permit(:name, :address, :date_time, :description, :difficulty, :equipment, :category_id, :owner_id)
+    params.require(:activity).permit(:name, :address, :date_time, :description, :difficulty, :equipment, :category_id,
+                                     :owner_id)
   end
 end
