@@ -1,0 +1,10 @@
+<h1>I am booking show(Participant)</h1>
+<p>Description: <%= @booking.activity.description %></p>
+<p>Name: <%= @booking.participant.first_name %></p>
+<p>What: <%= @booking.activity.name %></p>
+<p>Where: <%= @booking.activity.address %></p>
+<p>When: <%= @booking.activity.date_time %></p>
+<p>Level: <%= @booking.activity.difficulty %></p>
+<p>What to bring: <%= @booking.activity.equipment %></p>
+<p>Category: <%= @booking.activity.category.name%></p>
+<p>Booking Status: <%= "For review" if @booking.status == nil %></p>
