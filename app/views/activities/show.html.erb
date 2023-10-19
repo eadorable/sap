@@ -1,5 +1,14 @@
 <div class="container">
     <!-- Activity Image -->
+    <div class="row">
+        <div class="col-12 mt-3">
+            <% if @activity.present? %>
+                <%# <%= cl_image_tag @activity.image_url.key, alt: "Activity Image", class: "img-fluid" %> %>
+            <% else %>
+                <p>Activity Name</p>
+            <% end %>
+        </div>
+    </div>
 
     <!-- Description -->
     <div class="row">
