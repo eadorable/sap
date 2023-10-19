@@ -2,11 +2,20 @@
 
 <% @activities.each do |activity| %>
 <div class="card">
-    <p>activity name: <%=link_to activity.name %></p>
-    <p>address: <%= activity.address %></p>
-    <p>equipment: <%= activity.equipment %></p>
-    <p>description: <%= activity.description %></p>
-    <p>email: <%= activity.date_time %></p>
-    <p>difficulty 1 to 5: <%= activity.difficulty %></p>
+    <p>Activity name: <%=link_to activity.name %></p>
+    <p>Address: <%= activity.address %></p>
+    <p>Equipment: <%= activity.equipment %></p>
+    <p>Description: <%= activity.description %></p>
+    <p>Date & time: <%= activity.date_time.strftime('%d.%b.%Y at %H:%M') %></p>
+    <p>Difficulty:
+        <% difficulty = activity.difficulty %>
+        <% max_difficulty = 5 %>
+        <% (1..max_difficulty).each do |i| %>
+          <% if i <= difficulty %>
+            <i class="fa-solid fa-circle"></i>
+          <% else %>
+            <i class="fa-regular fa-circle"></i>
+          <% end %>
+        <% end %></p>
 </div>
 <% end%>
