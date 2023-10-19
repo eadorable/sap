@@ -1,14 +1,5 @@
 <div class="container">
     <!-- Activity Image -->
-    <div class="row">
-        <div class="col-12 mt-3">
-            <% if @activity.present? %>
-                <%= image_tag @activity.image_url, alt: "Activity Image", class: "img-fluid" %>
-            <% else %>
-                <p>Activity Name</p>
-            <% end %>
-        </div>
-    </div>
 
     <!-- Description -->
     <div class="row">
@@ -24,6 +15,9 @@
                             <p>Activity details</p>
                         <% end %>
                     </div>
+                    <%= simple_form_for [@activity, @booking] do |f| %>
+                    <%= f.submit "Book Now", class: "btn btn-primary" %>
+                    <% end %>
                 </div>
             </div>
         </div>
