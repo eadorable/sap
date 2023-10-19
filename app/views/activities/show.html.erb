@@ -1,0 +1,59 @@
+<div class="container">
+    <!-- Activity Image -->
+    <div class="row">
+        <div class="col-12 mt-3">
+            <% if @activity.present? %>
+                <%= image_tag @activity.image_url, alt: "Activity Image", class: "img-fluid" %>
+            <% else %>
+                <p>Activity Name</p>
+            <% end %>
+        </div>
+    </div>
+
+    <!-- Description -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Activity Description -->
+                    <div class="description-container">
+                        <% if @activity.present? %>
+                            <h5 class="card-title my-3"><%= @activity.name %></h5>
+                            <p class="card-text mb-3"><%= @activity.description %></p>
+                        <% else %>
+                            <p>Activity details</p>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map -->
+    <div class="row">
+        <div class="col-12">
+            <!-- Add the map API here (Mapbox / Google Maps). For now, there is an image of a map -->
+            <%= image_tag "staticmapforbar", alt: "Map image", class: "img-fluid mt-3" %>
+            <div id="map" style="height: 300px;"></div>
+        </div>
+    </div>
+
+    <!-- Message Box -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Message Center</h5>
+                    <div class="message-box-container">
+                        <form>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="3" placeholder="Type your message..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

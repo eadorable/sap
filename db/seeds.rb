@@ -11,42 +11,24 @@ puts "Building DB..."
 
 puts "Creating users..."
 
-users = [] # Create an empty array to store the users
-users << User.create!(
-  first_name: 'Erwin',
-  last_name: 'Doe',
-  email: 'erwin@example.com',
-  password: '123456'
-)
+users_data = [
+  { first_name: 'Erwin', last_name: 'Adorable', email: 'erwin@example.com', password: '123456' },
+  { first_name: 'Ardian', last_name: 'Idrizi', email: 'ardian@example.com', password: '123456' },
+  { first_name: 'Steven', last_name: 'Marquez', email: 'steven@example.com', password: '123456' },
+  { first_name: 'Akane', last_name: 'Saito', email: 'akane@example.com', password: '123456' }
+]
 
-users << User.create!(
-  first_name: 'Ardian',
-  last_name: 'Doe',
-  email: 'ardian@example.com',
-  password: '123456'
-)
+# Create an empty array to store the users
+users = []
 
-users << User.create!(
-  first_name: 'Steven',
-  last_name: 'Doe',
-  email: 'steven@example.com',
-  password: '123456'
-)
-
-users << User.create!(
-  first_name: 'Akane',
-  last_name: 'Doe',
-  email: 'akane@example.com',
-  password: '123456'
-)
+# Create users based on the users_data array
+users_data.each do |user_data|
+  users << User.create!(user_data)
+end
 
 puts "Creating categories..."
-categories = ['outdoor', 'indoor'] # Create an array with the categories
-10.times do
-  Category.create!(
-    name: categories.sample # Use sample to select a random category
-  )
-end
+Category.create!(name: 'Outdoor')
+Category.create!(name: 'Indoor')
 
 puts "Creating activities..."
 difficulty = [1, 2, 3, 4, 5] # Create an array with the difficulties
