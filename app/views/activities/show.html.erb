@@ -5,7 +5,7 @@
             <% if @activity.present? %>
                 <%= image_tag @activity.image_url, alt: "Activity Image", class: "img-fluid" %>
             <% else %>
-                <p>Activity Name</p>
+                <p>Activity Image Not Found</p>
             <% end %>
         </div>
     </div>
@@ -21,7 +21,7 @@
                             <h5 class="card-title my-3"><%= @activity.name %></h5>
                             <p class="card-text mb-3"><%= @activity.description %></p>
                         <% else %>
-                            <p>Activity details</p>
+                            <p>Activity details not found</p>
                         <% end %>
                     </div>
                 </div>

@@ -1,13 +1,14 @@
 <h1>This is Activity page!</h1>
 
 <% @activities.each do |activity| %>
-<div class="card">
-    <p>Activity name: <%=link_to activity.name %></p>
-    <p>Address: <%= activity.address %></p>
-    <p>Equipment: <%= activity.equipment %></p>
-    <p>Description: <%= activity.description %></p>
-    <p>Date & time: <%= activity.date_time.strftime('%d.%b.%Y at %H:%M') %></p>
-    <p>Difficulty:
+  <%= link_to activity_path(activity) do %> <!-- Wrap the entire card content in a link -->
+    <div class="card">
+      <p>Activity name: <%= activity.name %></p>
+      <p>Address: <%= activity.address %></p>
+      <p>Equipment: <%= activity.equipment %></p>
+      <p>Description: <%= activity.description %></p>
+      <p>Date & time: <%= activity.date_time.strftime('%d.%b.%Y at %H:%M') %></p>
+      <p>Difficulty:
         <% difficulty = activity.difficulty %>
         <% max_difficulty = 5 %>
         <% (1..max_difficulty).each do |i| %>
@@ -16,6 +17,8 @@
           <% else %>
             <i class="fa-regular fa-circle"></i>
           <% end %>
-        <% end %></p>
-</div>
-<% end%>
+        <% end %>
+      </p>
+    </div>
+  <% end %> <!-- Close the link here -->
+<% end %>
