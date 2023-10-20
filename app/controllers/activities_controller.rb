@@ -8,7 +8,9 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-    @activity = Activity.find_by(id: params[:id])
+    # @activity = Activity.find_by(id: params[:id])
+    @activity = Activity.find(params[:id])
+    @booking = Booking.new
   end
 
   def new

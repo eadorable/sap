@@ -24,6 +24,10 @@
                             <p>Activity details</p>
                         <% end %>
                     </div>
+                    <!--Join Button-->
+                    <%= simple_form_for [@activity, @booking] do |f| %>
+                    <%= f.submit "Join", class: "btn btn-primary" %>
+                    <% end %>
                 </div>
             </div>
         </div>
