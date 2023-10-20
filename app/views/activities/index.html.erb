@@ -1,4 +1,13 @@
-<h1>This is Activity page!</h1>
+  <div class="d-flex mx-3 pt-4">
+    <%= form_with url: activities_path, method: :get, class: "d-flex" do %>
+        <%=text_field_tag :query,
+          params[:query],
+          placeholder: "Search activties",
+          class: "form-control me-2"
+        %>
+      <%=submit_tag "Search", name:"", class: "btn btn-primary"%>
+    <% end %>
+    </div>
 
 <div class="container">
       <div class="cards">
