@@ -1,24 +1,36 @@
-<h1>This is Activity page!</h1>
-
-<% @activities.each do |activity| %>
-  <%= link_to activity_path(activity) do %> <!-- Wrap the entire card content in a link -->
-    <div class="card">
-      <p>Activity name: <%= activity.name %></p>
-      <p>Address: <%= activity.address %></p>
-      <p>Equipment: <%= activity.equipment %></p>
-      <p>Description: <%= activity.description %></p>
-      <p>Date & time: <%= activity.date_time.strftime('%d.%b.%Y at %H:%M') %></p>
-      <p>Difficulty:
-        <% difficulty = activity.difficulty %>
-        <% max_difficulty = 5 %>
-        <% (1..max_difficulty).each do |i| %>
-          <% if i <= difficulty %>
-            <i class="fa-solid fa-circle"></i>
-          <% else %>
-            <i class="fa-regular fa-circle"></i>
-          <% end %>
-        <% end %>
-      </p>
+  <div class="d-flex mx-3 pt-1">
+    <%= form_with url: activities_path, method: :get, class: "d-flex" do %>
+        <%=text_field_tag :query,
+          params[:query],
+          placeholder: "Search activties",
+          class: "form-control me-2"
+        %>
+      <%=submit_tag "Search", name:"", class: "btn btn-primary"%>
+    <% end %>
     </div>
-  <% end %> <!-- Close the link here -->
-<% end %>
+<div class="container">
+      <div class="cards">
+      <% @activities.each do |activity| %>
+            <%= link_to activity_path(activity) do %>
+            <div class="custom--card mt-2">
+              <%= image_tag("bar.png") %>
+            <p>Activity name: <%= activity.name %></p>
+            <p>Address: <%= activity.address %></p>
+            <p>Equipment: <%= activity.equipment %></p>
+            <p>Description: <%= activity.description %></p>
+            <p>Date & time: <%= activity.date_time.strftime('%d.%b.%Y at %H:%M') %></p>
+            <p>Difficulty:
+              <% difficulty = activity.difficulty %>
+              <% max_difficulty = 5 %>
+              <% (1..max_difficulty).each do |i| %>
+                <% if i <= difficulty %>
+                  <i class="fa-solid fa-circle"></i>
+                <% else %>
+                  <i class="fa-regular fa-circle"></i>
+                <% end %>
+              <% end %></p>
+      </div>
+         <% end %>
+      <% end%>
+    </div>
+  </div>
