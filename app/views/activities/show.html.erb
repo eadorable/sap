@@ -4,6 +4,7 @@
         <div class="col-12 mt-3">
             <% if @activity.present? %>
                 <%# <%= cl_image_tag @activity.image_url.key, alt: "Activity Image", class: "img-fluid" %> %>
+
             <% else %>
                 <p>Activity Name</p>
             <% end %>
@@ -23,22 +24,34 @@
                         <% else %>
                             <p>Activity details</p>
                         <% end %>
-                    </div>
+                  </div>
+                  
                     <!--Join Button-->
                     <%= simple_form_for [@activity, @booking] do |f| %>
                     <%= f.submit "Join", class: "btn btn-primary" %>
                     <% end %>
+                  
                 </div>
             </div>
         </div>
     </div>
 
+<!-- Full Address -->
+  <div class="row my-3">
+    <div class="col-12">
+      <p><%= @activity.address %></p>
+    </div>
+  </div>
+
     <!-- Map -->
-    <div class="row">
+    <div class="row my-5">
         <div class="col-12">
-            <!-- Add the map API here (Mapbox / Google Maps). For now, there is an image of a map -->
-            <%= image_tag "staticmapforbar", alt: "Map image", class: "img-fluid mt-3" %>
-            <div id="map" style="height: 300px;"></div>
+            <!-- Mapbox container and data attributes -->
+            <div style="width: 100%; height: 100%;"
+            data-controller="map"
+            data-map-center-latitude-value="<%= @activity_coordinates[0] %>"
+            data-map-center-longitude-value="<%= @activity_coordinates[1] %>"
+            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
     </div>
 
