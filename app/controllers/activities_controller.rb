@@ -1,8 +1,9 @@
 class ActivitiesController < ApplicationController
   def index
     @activities = Activity.all
-    if params[:search].present? && params[:search][:query] != ''
-      @activities = Activity.all.global_search(params[:search][:query])
+
+    if params[:query].present?
+      @activities = Activity.all.global_search(params[:query])
     end
   end
 
