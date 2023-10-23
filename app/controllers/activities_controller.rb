@@ -3,9 +3,11 @@ class ActivitiesController < ApplicationController
 
   def index
     @activities = Activity.all
-    filter_activities if params[:search].present? && params[:search][:query].present?
-
     @markers = geocoded_activity_markers
+
+    if params[:query].present?
+      @activities = Activity.all.global_search(params[:query])
+    end
   end
 
   def show
@@ -38,10 +40,6 @@ class ActivitiesController < ApplicationController
 
   def set_activity
     @activity = Activity.find_by(id: params[:id])
-  end
-
-  def filter_activities
-    @activities = Activity.all.global_search(params[:search][:query])
   end
 
   def geocoded_activity_markers
