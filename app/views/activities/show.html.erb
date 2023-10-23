@@ -1,76 +1,70 @@
 <div class="container">
-    <!-- Activity Image -->
-    <div class="row">
-        <div class="col-12 mt-3">
-            <% if @activity.present? %>
-                <%# cl_image_tag @activity.image_url.key, alt: "Activity Image", class: "img-fluid" %>
-
-            <% else %>
-                <p>Activity Name</p>
-            <% end %>
-        </div>
+  <!-- Activity Image -->
+  <div class="row justify-content-center mt-1">
+    <div class="col-12">
+        <% if @activity.present? %>
+            <%# cl_image_tag @activity.image_url.key, alt: "Activity Image", class: "img-fluid" %>
+        <% else %>
+            <p>Activity Name</p>
+        <% end %>
     </div>
-
-    <!-- Description -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <!-- Activity Description -->
-                    <div class="description-container">
-                        <% if @activity.present? %>
-                            <h5 class="card-title my-3"><%= @activity.name %></h5>
-                            <p class="card-text mb-3"><%= @activity.description %></p>
-                        <% else %>
-                            <p>Activity details</p>
-                        <% end %>
-                  </div>
-
-                    <!--Join Button-->
-                    <%= simple_form_for [@activity, @booking] do |f| %>
-                    <%= f.submit "Join", class: "btn btn-primary" %>
-                    <% end %>
-
-                </div>
+  </div>
+  <!-- Description -->
+  <div class="row">
+      <div class="col-12">
+          <div class="card mt-2 m-0 mb-2">
+            <div class="card-body">
+              <!-- Activity Description -->
+              <div class="description-container">
+                <% if @activity.present? %>
+                  <h4 class="card-title text-center my-1"><%= @activity.name %></h4>
+                  <p class="card-text mt-2 mb-2"><%= @activity.description %></p>
+                <% else %>
+                  <p>Activity details</p>
+                <% end %>
+              </div>
+                <!--Join Button-->
+                <%= simple_form_for [@activity, @booking] do |f| %>
+                <%= f.submit "Join", class: "btn btn-primary" %>
+                <% end %>
             </div>
-        </div>
-    </div>
+          </div>
+      </div>
+  </div>
 
 <!-- Full Address -->
-  <div class="row my-3">
+  <div class="row my-0 mb-0">
     <div class="col-12">
       <p><%= @activity.address %></p>
     </div>
   </div>
 
-    <!-- Map -->
-    <div class="row my-5">
-        <div class="col-12">
-            <!-- Mapbox container and data attributes -->
-            <div style="width: 100%; height: 100%;"
-            data-controller="map"
-            data-map-center-latitude-value="<%= @activity_coordinates[0] %>"
-            data-map-center-longitude-value="<%= @activity_coordinates[1] %>"
-            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-        </div>
+  <!-- Map -->
+  <div class="row my-0 mt-0">
+    <div class="col-12">
+      <!-- Mapbox container and data attributes -->
+      <div style="width: 100%; height: 100%;"
+      data-controller="map"
+      data-map-center-latitude-value="<%= @activity_coordinates[0] %>"
+      data-map-center-longitude-value="<%= @activity_coordinates[1] %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
+  </div>
 
-    <!-- Message Box -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Message Center</h5>
-                    <div class="message-box-container">
-                        <form>
-                            <div class="form-group">
-                                <textarea class="form-control" rows="3" placeholder="Type your message..."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Send</button>
-                        </form>
-                    </div>
-                </div>
+  <!-- Message Box -->
+  <div class="col-12">
+    <div class="card mt-2 m-0 mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Message Center</h5>
+        <div class="message-box-container">
+          <form>
+            <div class="form-group">
+              <textarea class="form-control mb-2" rows="3" placeholder="Type your message..."></textarea>
             </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>
