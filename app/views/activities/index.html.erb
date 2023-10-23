@@ -18,7 +18,7 @@
             <p>Address: <%= activity.address %></p>
             <p>Equipment: <%= activity.equipment %></p>
             <p>Description: <%= activity.description %></p>
-            <p>Date & time: <%= activity.date_time.strftime('%d.%b.%Y at %H:%M') %></p>
+            <p>Date & time: <%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></p>
             <p>Difficulty:
               <% difficulty = activity.difficulty %>
               <% max_difficulty = 5 %>
