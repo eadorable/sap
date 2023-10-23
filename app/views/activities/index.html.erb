@@ -1,20 +1,23 @@
-  <div class="d-flex mx-3 pt-1">
-    <%= form_with url: activities_path, method: :get, class: "d-flex" do %>
-        <%=text_field_tag :query,
-          params[:query],
-          placeholder: "Search activties",
-          class: "form-control me-2"
-        %>
-      <%=submit_tag "Search", name:"", class: "btn btn-primary"%>
-    <% end %>
-    </div>
+<%= form_tag(activities_path, method: 'get') do %>
+  <div class="input-group rounded p-3">
+    <%= label_tag %>
+    <%= select_tag 'category_id', options_for_select(@categories.map { |c| [c.name, c.id] }, params[:category_id]), include_blank: 'All categories' %>
+    <%= submit_tag "Filter", class: "btn btn-success" %>
+  </div>
+  <div class="form-group rounded p-2">
+    <%= label_tag %>
+    <%= text_field_tag :query, params[:query], class: "input mb-3" ,placeholder: "search activities" %>
+    <%= submit_tag 'Search', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
 <div class="container">
       <div class="cards">
       <% @activities.each do |activity| %>
             <%= link_to activity_path(activity) do %>
             <div class="custom--card mt-2">
-              <%= image_tag("bar.png") %>
-            <p>Activity name: <%= activity.name %></p>
+            <p class="text-center"><%= activity.name %></p>
+              <div class="m-4"><%= image_tag("bar.png") %>
             <p>Address: <%= activity.address %></p>
             <p>Equipment: <%= activity.equipment %></p>
             <p>Description: <%= activity.description %></p>
@@ -29,6 +32,7 @@
                   <i class="fa-regular fa-circle"></i>
                 <% end %>
               <% end %></p>
+              </div>
       </div>
          <% end %>
       <% end%>

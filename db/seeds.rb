@@ -29,7 +29,21 @@ end
 puts "Creating categories..."
 Category.create!(name: 'Outdoor')
 Category.create!(name: 'Indoor')
-
+Category.create!(name: 'Water')
+Category.create!(name: 'Team')
+Category.create!(name: 'Solo')
+Category.create!(name: 'Ball')
+Category.create!(name: 'Racket')
+Category.create!(name: 'Running')
+Category.create!(name: 'Cycling')
+Category.create!(name: 'Golf')
+Category.create!(name: 'Baseball')
+Category.create!(name: 'Football')
+Category.create!(name: 'Basketball')
+Category.create!(name: 'Tennis')
+Category.create!(name: 'Volleyball')
+Category.create!(name: 'Swimming')
+Category.create!(name: 'Hiking')
 puts "Creating activities..."
 difficulty = [1, 2, 3, 4, 5] # Create an array with the difficulties
 name = ['Football', 'Basketball', 'Tennis', 'Volleyball', 'Running', 'Swimming', 'Cycling', 'Hiking', 'Golf', 'Baseball']

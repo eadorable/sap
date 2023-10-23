@@ -12,6 +12,10 @@
                 <div class="col-md-12">
                   <div><%= f.label :Category, required: true %></div>
                   <div class="d-flex justify-content-around"><%= f.collection_radio_buttons :category_id, Category.all, :id, :name %></div>
+
+                
+
+
                 </div>
               </div>
 
