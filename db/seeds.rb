@@ -33,11 +33,22 @@ Category.create!(name: 'Indoor')
 puts "Creating activities..."
 difficulty = [1, 2, 3, 4, 5] # Create an array with the difficulties
 name = ['Football', 'Basketball', 'Tennis', 'Volleyball', 'Running', 'Swimming', 'Cycling', 'Hiking', 'Golf', 'Baseball']
-
+addresses = [
+  '42 Friedrichstrasse, 10117 Berlin, Germany',
+  '15 Karl-Liebknecht-Strasse, 04107 Leipzig, Germany',
+  '5 Schlossplatz, 70173 Stuttgart, Germany',
+  '23 Königstrasse, 90402 Nuremberg, Germany',
+  '8 Kurfürstendamm, 10719 Berlin, Germany',
+  '12 Albertstrasse, 68165 Mannheim, Germany',
+  '31 Marienplatz, 80331 Munich, Germany',
+  '6 Domplatz, 48143 Münster, Germany',
+  '7 Breitscheidplatz, 10785 Berlin, Germany',
+  '18 Augustusplatz, 04109 Leipzig, Germany'
+]
 10.times do
   Activity.create!(
     name: name.sample,
-    address: Faker::Address.full_address,
+    address: addresses.sample,
     date_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
     description: Faker::Lorem.sentence(word_count: 10),
     owner: users.sample,  # Use sample to select a random user
@@ -46,14 +57,4 @@ name = ['Football', 'Basketball', 'Tennis', 'Volleyball', 'Running', 'Swimming',
     category: Category.all.sample  # Use Category.first to select the first category
   )
 end
-
-puts "Creating bookings..."
-10.times do
-  Booking.create!(
-    status: true,
-    activity: Activity.all.sample,  # Use Activity.all.sample to select a random activity
-    participant: User.all.sample  # Use User.all.sample to select a random user
-  )
-end
-
 puts "DB created"

@@ -1,0 +1,17 @@
+<h2>My Activities(<%= @bookings.count %>) - As participant</h2>
+<%@bookings.each do |booking|%>
+  <p><%= booking.activity.name %></p>
+  <p><%= booking.activity.date_time %></p>
+  <p><%= booking.status == nil ? "Waiting for approval" : "Approved" %></p>
+  <p><%= "#{booking.activity.owner.first_name} #{booking.activity.owner.last_name}" %></p>
+<% end %>
+
+
+<h2>My Activities(<%= @activities.count %>)As organizer</h2>
+<% @activities.each do |activity| %>
+  <p><%= activity.name %></p>
+  <p><%= activity.date_time %></p>
+  <p><%= "#{activity.owner.first_name} #{activity.owner.last_name}" %></p>
+  <p><%= activity.owner_id %></p>
+
+<% end %>
