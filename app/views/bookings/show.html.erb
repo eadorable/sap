@@ -8,13 +8,21 @@
             <h4 class="card-title text-center"><%= @booking.activity.name %></h4>
             <div class="col-md-12">
               <%= simple_form_for(@booking) do |f| %>
-                <div ><%= image_tag("bar.png", class: "d-block w-100") %></div>
+                <div><%= image_tag("bar.png", class: "d-block w-100") %></div>
                 <p>Description: <%= @booking.activity.description %></p>
                 <p>Name: <%= @booking.participant.first_name %></p>
-                <p>What: <%= @booking.activity.name %></p>
                 <p>Where: <%= @booking.activity.address %></p>
-                <p>When: <%= @booking.activity.date_time %></p>
-                <p>Level: <%= @booking.activity.difficulty %></p>
+                <p>When: <%= @booking.activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></p>
+                <p>Difficulty:
+                  <% difficulty = @booking.activity.difficulty %>
+                  <% max_difficulty = 5 %>
+                  <% (1..max_difficulty).each do |i| %>
+                    <% if i <= difficulty %>
+                      <i class="fa-solid fa-circle"></i>
+                    <% else %>
+                      <i class="fa-regular fa-circle"></i>
+                    <% end %>
+                  <% end %></p>
                 <p>What to bring: <%= @booking.activity.equipment %></p>
                 <p>Category: <%= @booking.activity.category.name%></p>
                 <p>Booking Status: <%= "For review" if @booking.status == nil %></p>
@@ -24,4 +32,5 @@
         </div>
       </div>
     </div>
+  </div>
 </div>
