@@ -1,3 +1,20 @@
+<div class="dropdown d-flex mx-3 pt-1">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+     categories
+    </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <% Category.all.each do |category| %>
+        <li><%= link_to category.name, activities_path(category: category.id) %></li>
+    <% end %>
+  </ul>
+</div>
+
+      <%= form_tag('products', :remote => true) do %>
+        <%= select_tag "category", options_from_collection_for_select(Category.all, "id", "name"),  { :include_blank => true , :class => "categories" } %>
+        <%= submit_tag 'Filter' %>
+      <% end %>
+
+
   <div class="d-flex mx-3 pt-1">
     <%= form_with url: activities_path, method: :get, class: "d-flex" do %>
         <%=text_field_tag :query,
@@ -8,13 +25,17 @@
       <%=submit_tag "Search", name:"", class: "btn btn-primary"%>
     <% end %>
     </div>
+  </div>
+
+
+
 <div class="container">
       <div class="cards">
       <% @activities.each do |activity| %>
             <%= link_to activity_path(activity) do %>
             <div class="custom--card mt-2">
-              <%= image_tag("bar.png") %>
-            <p>Activity name: <%= activity.name %></p>
+            <p class="text-center"><%= activity.name %></p>
+              <div class="m-4"><%= image_tag("bar.png") %>
             <p>Address: <%= activity.address %></p>
             <p>Equipment: <%= activity.equipment %></p>
             <p>Description: <%= activity.description %></p>
@@ -29,6 +50,7 @@
                   <i class="fa-regular fa-circle"></i>
                 <% end %>
               <% end %></p>
+              </div>
       </div>
          <% end %>
       <% end%>

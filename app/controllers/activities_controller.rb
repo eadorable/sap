@@ -6,6 +6,7 @@ class ActivitiesController < ApplicationController
     filter_activities if params[:search].present? && params[:search][:query].present?
 
     @markers = geocoded_activity_markers
+    @categories = Category.all
   end
 
   def show
