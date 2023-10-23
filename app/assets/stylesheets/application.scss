@@ -11,3 +11,10 @@
 @import "components/index";
 @import "pages/index";
 @import "components/show";
+@import "components/map";
+@import 'components/address_autocomplete';
+
+a {
+  text-decoration: none;
+  color: black;
+}

@@ -27,12 +27,8 @@ users_data.each do |user_data|
 end
 
 puts "Creating categories..."
-categories = ['outdoor', 'indoor'] # Create an array with the categories
-10.times do
-  Category.create!(
-    name: categories.sample # Use sample to select a random category
-  )
-end
+Category.create!(name: 'Outdoor')
+Category.create!(name: 'Indoor')
 
 puts "Creating activities..."
 difficulty = [1, 2, 3, 4, 5] # Create an array with the difficulties
