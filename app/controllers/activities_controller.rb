@@ -9,6 +9,10 @@ class ActivitiesController < ApplicationController
     if params[:query].present?
       @activities = Activity.all.global_search(params[:query])
     end
+
+    if params[:category_id].present?
+      @activities = @activities.where(category_id: params[:category_id])
+    end
   end
 
   def show

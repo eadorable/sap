@@ -1,33 +1,15 @@
-<div class="dropdown d-flex mx-3 pt-1">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-     categories
-    </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <% Category.all.each do |category| %>
-        <li><%= link_to category.name, activities_path(category: category.id) %></li>
-    <% end %>
-  </ul>
-</div>
-
-      <%= form_tag('products', :remote => true) do %>
-        <%= select_tag "category", options_from_collection_for_select(Category.all, "id", "name"),  { :include_blank => true , :class => "categories" } %>
-        <%= submit_tag 'Filter' %>
-      <% end %>
-
-
-  <div class="d-flex mx-3 pt-1">
-    <%= form_with url: activities_path, method: :get, class: "d-flex" do %>
-        <%=text_field_tag :query,
-          params[:query],
-          placeholder: "Search activties",
-          class: "form-control me-2"
-        %>
-      <%=submit_tag "Search", name:"", class: "btn btn-primary"%>
-    <% end %>
-    </div>
+<%= form_tag(activities_path, method: 'get') do %>
+  <div class="input-group rounded p-3">
+    <%= label_tag %>
+    <%= select_tag 'category_id', options_for_select(@categories.map { |c| [c.name, c.id] }, params[:category_id]), include_blank: 'All categories' %>
+    <%= submit_tag "Filter", class: "btn btn-success" %>
   </div>
-
-
+  <div class="form-group rounded p-2">
+    <%= label_tag %>
+    <%= text_field_tag :query, params[:query], class: "input mb-3" ,placeholder: "search activities" %>
+    <%= submit_tag 'Search', class: 'btn btn-primary' %>
+  </div>
+<% end %>
 
 <div class="container">
       <div class="cards">
