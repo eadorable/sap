@@ -4,9 +4,14 @@ class ActivitiesController < ApplicationController
   def index
     @activities = Activity.all
     @markers = geocoded_activity_markers
+    @categories = Category.all
 
     if params[:query].present?
       @activities = Activity.all.global_search(params[:query])
+    end
+
+    if params[:category_id].present?
+      @activities = @activities.where(category_id: params[:category_id])
     end
   end
 
