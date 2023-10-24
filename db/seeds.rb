@@ -29,24 +29,22 @@ end
 puts "Creating categories..."
 Category.create!(name: 'Outdoor')
 Category.create!(name: 'Indoor')
-Category.create!(name: 'Water')
-Category.create!(name: 'Team')
-Category.create!(name: 'Solo')
-Category.create!(name: 'Ball')
-Category.create!(name: 'Racket')
-Category.create!(name: 'Running')
-Category.create!(name: 'Cycling')
-Category.create!(name: 'Golf')
-Category.create!(name: 'Baseball')
-Category.create!(name: 'Football')
-Category.create!(name: 'Basketball')
-Category.create!(name: 'Tennis')
-Category.create!(name: 'Volleyball')
-Category.create!(name: 'Swimming')
-Category.create!(name: 'Hiking')
+Category.create!(name: 'Art')
+Category.create!(name: 'Sport')
+Category.create!(name: 'Fitness')
+Category.create!(name: 'Community')
+Category.create!(name: 'Games')
+Category.create!(name: 'Health')
+Category.create!(name: 'Hobbies')
+Category.create!(name: 'Languages')
+Category.create!(name: 'Music')
+Category.create!(name: 'Social')
+Category.create!(name: 'Support')
+Category.create!(name: 'Dance')
+Category.create!(name: 'Pets')
 puts "Creating activities..."
 difficulty = [1, 2, 3, 4, 5] # Create an array with the difficulties
-name = ['Football', 'Basketball', 'Tennis', 'Volleyball', 'Running', 'Swimming', 'Cycling', 'Hiking', 'Golf', 'Baseball']
+name = ['Football', 'Basketball', 'Chess', 'Volleyball', 'Running', 'Yoga', 'Cycling', 'Hiking', 'Board Game', 'Baseball']
 addresses = [
   '42 Friedrichstrasse, 10117 Berlin, Germany',
   '15 Karl-Liebknecht-Strasse, 04107 Leipzig, Germany',
