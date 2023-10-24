@@ -1,32 +1,38 @@
 <div class="container">
-  <!-- Activity Image -->
-  <div class="row justify-content-center mt-1">
-    <div class="col-12">
-        <% if @activity.present? %>
-            <%# cl_image_tag @activity.image_url.key, alt: "Activity Image", class: "img-fluid" %>
-        <% else %>
-            <p>Activity Name</p>
-        <% end %>
+
+    <!-- Activity Image -->
+    <div class="row justify-content-center mt-1">
+        <div class="col-12">
+            <% if @activity.present? %>
+                <%# <%= cl_image_tag @activity.image_url.key, alt: "Activity Image", class: "img-fluid" %>
+
+            <% else %>
+                <p>Activity Name</p>
+            <% end %>
+        </div>
     </div>
-  </div>
-  <!-- Description -->
-  <div class="row">
-      <div class="col-12">
-          <div class="card mt-2 m-0 mb-2">
-            <div class="card-body">
-              <!-- Activity Description -->
-              <div class="description-container">
-                <% if @activity.present? %>
-                  <h4 class="card-title text-center my-1"><%= @activity.name %></h4>
-                  <p class="card-text mt-2 mb-2"><%= @activity.description %></p>
-                <% else %>
-                  <p>Activity details</p>
-                <% end %>
-              </div>
-                <!--Join Button-->
-                <%= simple_form_for [@activity, @booking] do |f| %>
-                <%= f.submit "Join", class: "btn btn-primary" %>
-                <% end %>
+
+    <!-- Description -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2 m-0 mb-2">
+                <div class="card-body">
+                    <!-- Activity Description -->
+                    <div class="description-container">
+                        <% if @activity.present? %>
+                            <h4 class="card-title my-1"><%= @activity.name %></h4>
+                            <p class="card-text mt-2 mb-2"><%= @activity.description %></p>
+                        <% else %>
+                            <p>Activity details</p>
+                        <% end %>
+                  </div>
+
+                    <!--Join Button-->
+                    <%= simple_form_for [@activity, @booking] do |f| %>
+                    <%= f.submit "Join", class: "btn btn-primary" %>
+                    <% end %>
+
+                </div>
             </div>
           </div>
       </div>
@@ -39,19 +45,23 @@
     </div>
   </div>
 
-  <!-- Map -->
-  <div class="row my-0 mt-0">
-    <div class="col-12">
-      <!-- Mapbox container and data attributes -->
-      <div style="width: 100%; height: 100%;"
-      data-controller="map"
-      data-map-center-latitude-value="<%= @activity_coordinates[0] %>"
-      data-map-center-longitude-value="<%= @activity_coordinates[1] %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+
+    <!-- Map -->
+    <div class="row my-0 mt-0">
+        <div class="col-12">
+            <!-- Mapbox container and data attributes -->
+            <div class="map-container"
+            data-controller="map"
+            data-map-center-latitude-value="<%= @activity_coordinates[0] %>"
+            data-map-center-longitude-value="<%= @activity_coordinates[1] %>"
+            data-map-markers-value="<%= @markers.to_json %>"
+            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
     </div>
   </div>
 
-  <!-- Message Box -->
+
+    <!-- Message Box -->
   <div class="col-12">
     <div class="card mt-2 m-0 mb-3">
       <div class="card-body">

@@ -3,7 +3,6 @@ class ActivitiesController < ApplicationController
 
   def index
     @activities = Activity.all
-    @markers = geocoded_activity_markers
     @categories = Category.all
 
     if params[:query].present?
@@ -18,6 +17,7 @@ class ActivitiesController < ApplicationController
   def show
     @activity = Activity.find(params[:id])
     @activity_coordinates = [@activity.latitude, @activity.longitude]
+    @markers = geocoded_activity_markers
     @booking = Booking.new
   end
 
@@ -53,8 +53,8 @@ class ActivitiesController < ApplicationController
       {
         lat: activity.latitude,
         lng: activity.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { activity: activity }),
-        marker_html: render_to_string(partial: "marker", locals: { activity: activity })
+        info_window_html: render_to_string(partial: "info_window", locals: { activity: @activity }),
+        marker_html: render_to_string(partial: "marker", locals: { activity: @activity, address: @activity.address })
       }
     end
   end
