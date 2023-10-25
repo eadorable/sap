@@ -1,34 +1,67 @@
 <%= form_tag(activities_path, method: 'get') do %>
-  <div class="input-group rounded p-3">
-    <%= label_tag %>
-    <%= select_tag 'category_id', options_for_select(@categories.map { |c| [c.name, c.id] }, params[:category_id]), include_blank: 'All categories' %>
-    <%= submit_tag "Filter", class: "btn btn-success" %>
-  </div>
-  <div class="form-group rounded p-2">
-    <%= label_tag %>
-    <%= text_field_tag :query, params[:query], class: "input mb-3" ,placeholder: "search activities" %>
-    <%= submit_tag 'Search', class: 'btn btn-primary' %>
-  </div>
+    <div class="search--bar">
+        <%= label_tag %>
+        <%= text_field_tag :query, params[:query], class: "input mb-3" ,placeholder: "Search activities" %>
+        <%= submit_tag 'Search', class: 'btn btn-primary search--button' %>
+
+    </div>
 <% end %>
-
-<div data-controller="bloober">
+<br>
+<div class="bloobers--container">
   <% @categories_name.each do |category| %>
-
-
-    <div class="bloob" style="background-color:<%= category == params[:tag] ? 'red' : '' %>";>
+    <div class="bloob" style="background-color:<%= category == params[:tag] ? '#7E73FF' : '' %>";>
       <%= link_to category, activities_path(tag: category)  %>
     </div>
   <% end %>
 </div>
-
 <style>
-  .bloob {
-    padding: 10px;
-    border: 2px solid black;
+  .search--bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+      .search--button {
+        border: 1px solid black;
+        background-color: #7E73FF;
+        color: white;
+        margin-left: 0.5rem;
+      }
   }
+   .search--bar input {
+        bordder:none;
+        border-radius: 4px;
+        padding: 8px;
+        margin:15px;
+      }
+
+  .bloobers--container {
+     display: inline-block;
+     .bloob {
+        cursor: pointer;
+        display: inline-block;
+        font-size: 0.7rem;
+        border-radius: 50rem;
+        padding: 0.1rem 0.5rem;
+        background-color: #ECEAFF;
+        color: #7E73FF;
+        border: 1px solid #7E73FF;
+        margin-right: 0.6rem;
+        margin-bottom: 0.4rem;
+     }
+  }
+  .bloob:hover {
+    background-color: #7E73FF;
+    color: white;
+  }
+
 </style>
 
+
 <div class="container">
+
       <div class="cards">
       <% @activities.each do |activity| %>
             <%= link_to activity_path(activity) do %>
@@ -37,7 +70,6 @@
               <div class="m-4"><%= image_tag("bar.png") %>
             <p>Address: <%= activity.address %></p>
             <p>Equipment: <%= activity.equipment %></p>
-            <p>Description: <%= activity.description %></p>
             <p>activity creator:<%= activity.owner.first_name %></p>
             <p>Date & time: <%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></p>
             <p>Difficulty:

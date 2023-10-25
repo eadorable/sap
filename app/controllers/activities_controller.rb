@@ -8,7 +8,7 @@ class ActivitiesController < ApplicationController
     else
       @activities = Activity.all
     end
-
+    
     @categories = Category.all
     @categories_name = Category.all.pluck(:name)
     if params[:query].present?
