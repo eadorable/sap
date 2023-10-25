@@ -8,13 +8,10 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    # @bookings = current_user.bookings
-    @bookings = Booking.where(participant: current_user)
-    @activities = current_user.activities
+    @my_activities = Activity.where(owner: current_user)
+    @my_bookings = Booking.where(participant: current_user)
+    @participants_booked = Booking.joins(activity: :owner).where(activities: { owner: current_user }, bookings: { status: true })
+    @participants_pending = Booking.joins(activity: :owner).where(activities: { owner: current_user }, bookings: { status: nil })
+    @participants_declined = Booking.joins(activity: :owner).where(activities: { owner: current_user }, bookings: { status: false })
   end
-
-  # def dashboard
-  #   @cars = current_user.cars
-  #   @orders = current_user.orders
-  # end
 end

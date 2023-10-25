@@ -1,4 +1,23 @@
 class BookingsController < ApplicationController
+  def index
+    # @bookings = Booking.where(activity: @my_activities)
+    @bookings = Booking.joins(activity: :owner).where(activities: { owner: current_user }, bookings: { status: nil })
+  end
+
+  def accept
+    @booking = Booking.find(params[:id])
+    @booking.update(status: true)
+    # redirect_to activity_bookings_path(@booking.activity)
+    redirect_to dashboard_path
+  end
+
+  def decline
+    @booking = Booking.find(params[:id])
+    @booking.update(status: false)
+    # redirect_to activity_bookings_path(@booking.activity)
+    redirect_to dashboard_path
+  end
+
   def show
     @booking = Booking.find(params[:id])
   end
@@ -8,7 +27,7 @@ class BookingsController < ApplicationController
 
     @booking = Booking.new(activity: @activity, participant: current_user)
     if @booking.save!
-      redirect_to booking_path(@booking)
+      redirect_to dashboard_path
     else
       render "activities/show"
     end

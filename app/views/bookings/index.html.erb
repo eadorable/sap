@@ -1,0 +1,10 @@
+<% unless @bookings.empty? %>
+  <% @bookings.each do |booking| %>
+    <p>Owner: <%= booking.activity.owner.first_name %></p>
+    <p>Participant: <%= booking.participant.first_name %></p>
+    <%= link_to "Accept", accept_booking_path(booking), method: :get, class: "btn btn-primary" %>
+    <%= link_to "Decline", decline_booking_path(booking), method: :get, class: "btn btn-danger" %>
+  <% end %>
+<% else %>
+  <p>No booking yet</p>
+<% end %>
