@@ -69,7 +69,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Indoor Rock Climbing',
-  address: '8 Kurfürstendamm, 10719 Berlin, Germany',
+  address: 'Kurfürstendamm 8, 10719 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Stay active indoors with exciting indoor activities and sports.',
   owner: users.sample,
@@ -79,7 +79,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Visiting a Museum',
-  address: '7 Breitscheidplatz, 10785 Berlin, Germany',
+  address: 'Breitscheidplatz 7, 10785 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Experience the world of art and culture through museum visits and artistic endeavors.',
   owner: users.sample,
@@ -89,7 +89,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Culinary Delights Masterclass',
-  address: '37 Mohrenstrasse, 10117 Berlin Germany',
+  address: 'Mohrenstrasse 37, 10117 Berlin Germany',
   date_time: create_random_date_time,
   description: 'Discover your culinary talents with cooking classes and gastronomic experiences.',
   owner: users.sample,
@@ -99,7 +99,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Football',
-  address: '17 Lützowplatz, 10785 Berlin, Germany',
+  address: 'Lützowplatz 17, 10785 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Get moving and participate in thrilling sports and athletic events.',
   owner: users.sample,
@@ -109,7 +109,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Wellness and Fitness Retreat',
-  address: '84 Dorotheenstraße, 10117 Berlin, Germany',
+  address: 'Dorotheenstraße 84, 10117 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Improve your fitness and well-being through yoga, workouts, and more.',
   owner: users.sample,
@@ -119,7 +119,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Community Care Day',
-  address: '1 Stefan-Heym-Platz, 10367 Berlin, Germany',
+  address: 'Stefan-Heym-Platz 1, 10367 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Give back to the community through volunteer work and community service.',
   owner: users.sample,
@@ -129,7 +129,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Board Game Bonanza',
-  address: '30 Mohrenstrasse, 10117 Berlin, Germany',
+  address: 'Mohrenstrasse 30, 10117 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Challenge your strategic thinking and have fun with board games and puzzles.',
   owner: users.sample,
@@ -139,7 +139,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Holistic Health and Wellness Workshop',
-  address: '1 Torstrasse, 10119, Berlin, Germany',
+  address: 'Torstrasse 1, 10119, Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Focus on your well-being with wellness workshops and health-related activities.',
   owner: users.sample,
@@ -149,7 +149,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Hobby Enthusiasts Gathering',
-  address: '20 Nordufer, 13353 Berlin, Germany',
+  address: 'Nordufer 20, 13353 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Pursue your hobbies and passions with like-minded individuals.',
   owner: users.sample,
@@ -159,7 +159,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Language Exchange Fiesta',
-  address: '15 Karl-Liebknecht-Strasse, 04107 Leipzig, Germany',
+  address: 'Lützowplatz 17, 10785 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Expand your linguistic horizons and engage in language exchange activities.',
   owner: users.sample,
@@ -169,7 +169,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Harmonious Melodies Concert',
-  address: '5 Schlossplatz, 70173 Stuttgart, Germany',
+  address: 'Möckernstrasse 10, 10963 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Enjoy the magic of live music performances and musical gatherings.',
   owner: users.sample,
@@ -179,7 +179,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Social Soiree: Mix and Mingle',
-  address: '23 Königstrasse, 90402 Nuremberg, Germany',
+  address: 'Kantstraße 148, 10623 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Meet new people and socialize at various social events and mixers.',
   owner: users.sample,
@@ -189,7 +189,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Support Circle: Finding Strength Together',
-  address: '33 Mehringdamm, 10961 Berlin, Germany',
+  address: 'Mehringdamm 33, 10961 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Find support and encouragement through support group meetings and counseling.',
   owner: users.sample,
@@ -199,7 +199,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Dance Fusion Fever',
-  address: '31 Marienplatz, 80331 Munich, Germany',
+  address: 'Egelingzeile 6, 12103 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Move to the rhythm and express yourself with dance classes and dance events.',
   owner: users.sample,
@@ -209,7 +209,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Paws and Play: Pet Adoption Event',
-  address: '6 Domplatz, 48143 Münster, Germany',
+  address: 'Köpenicker Str. 163, 12355 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Connect with adorable pets and consider adopting a furry friend.',
   owner: users.sample,
@@ -219,7 +219,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Tennis Tournament',
-  address: '1 Am Friedrichshain, 10249 Berlin, Germany',
+  address: 'Am Friedrichshain 1, 10249 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Serve and volley your way to victory in our friendly tennis tournament. Compete with fellow tennis enthusiasts and enjoy a day on the court.',
   owner: users.sample,
@@ -229,7 +229,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Basketball Pickup Game',
-  address: '15 Körtestraße, 10967 Berlin, Germany',
+  address: 'Körtestraße 15, 10967 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Lace up your basketball shoes and get ready to shoot some hoops. Join our pickup game for an afternoon of fast-paced basketball action.',
   owner: users.sample,
@@ -239,7 +239,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Wellness Workshop',
-  address: '23 Rudi-Dutschke-Straße, 10969 Berlin, Germany',
+  address: 'Rudi-Dutschke-Straße 23, 10969 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Join our wellness workshop designed for seniors to enhance physical and mental well-being. Learn about exercises, nutrition, and relaxation techniques for a healthier lifestyle.',
   owner: users.sample,
@@ -249,7 +249,7 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Memory Lane: Reminiscence Group',
-  address: '28 Oranienburger Str., 10117 Berlin, Germany',
+  address: 'Oranienburger Str. 28, 10117 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Share and cherish your life stories with fellow seniors in a warm and supportive environment. This group session promotes memory recall and emotional connection.',
   owner: users.sample,
@@ -259,12 +259,22 @@ Activity.create!(
 )
 Activity.create!(
   name: 'Supportive Caregiver Symposium',
-  address: '3 Luckenwalder Str., 10963 Berlin, Germany',
+  address: 'Luckenwalder Str. 3, 10963 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'A symposium designed for both seniors and their caregivers. Gain valuable insights, share experiences, and connect with others facing similar challenges.',
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Any relevant medical or caregiving documents',
+  category: support
+)
+Activity.create!(
+  name: 'Peaceful Minds Meditation Gathering',
+  address: 'Georgenstraße 23, 10117 Berlin, Germany',
+  date_time: create_random_date_time,
+  description: 'Cultivate inner peace and mindfulness with our meditation group. Relax, de-stress, and share positive energy with like-minded seniors.',
+  owner: users.sample,
+  difficulty: rand(1..5),
+  equipment: 'Comfortable clothing, a cushion or mat for sitting, and an open, tranquil mind.',
   category: support
 )
 puts "DB created"
