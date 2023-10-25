@@ -2,3 +2,14 @@
 .message-box-container {
     width: 100%;
 }
+
+.carousel-item .carousel-image {
+  height: 450px; /* Adjust the height as needed */
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel-image {
+  border-radius: 20px; /* Adjust the value as needed for your desired roundness */
+  overflow: hidden;
+}
