@@ -48,13 +48,13 @@ class ActivitiesController < ApplicationController
   end
 
   def geocoded_activity_markers
-    geocoded_activities = Activity.geocoded
+    geocoded_activities = Activity.all
     geocoded_activities.map do |activity|
       {
         lat: activity.latitude,
         lng: activity.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { activity: @activity }),
-        marker_html: render_to_string(partial: "marker", locals: { activity: @activity, address: @activity.address })
+        info_window_html: render_to_string(partial: "info_window", locals: { activity: activity }),
+        marker_html: render_to_string(partial: "marker", locals: { activity: activity, address: activity.address })
       }
     end
   end
