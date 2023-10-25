@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   resources :activities do
     resources :bookings, only: %i[create]
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
-  resources :bookings, only: %i[show]
+  resources :bookings, only: %i[show index] do
+    member do
+      get :accept # => bookings#accept, need to check if get or patch
+      get :decline # => bookings#decline, need to check if get or patch
+    end
+  end
   get 'dashboard', to: 'pages#dashboard'
 end
