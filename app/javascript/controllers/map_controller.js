@@ -12,18 +12,11 @@ export default class extends Controller {
     mapboxgl.accessToken = this.apiKeyValue
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mapbox/streets-v12",
-      center: [-79.4512, 43.6568],
-      zoom: 13
+      style: "mapbox://styles/mapbox/streets-v12"
     });
 
     this.#addMarkersToMap() // Call the method to add markers
     this.#fitMapToMarkers() // Call the method to fit the map to markers
-
-    if (this.activityCoordinatesValue) {
-      this.map.setCenter(this.activityCoordinatesValue);
-      this.map.setZoom(15); // You can adjust the zoom level as needed
-    }
 
     // Add Mapbox Geocoder control to the map
     this.map.addControl(
