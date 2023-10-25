@@ -16,6 +16,7 @@
         <div class="col-12">
             <div class="card mt-2 m-0 mb-2">
                 <div class="card-body">
+
                     <!-- Activity Description -->
                     <div class="description-container">
                         <% if @activity.present? %>
@@ -27,10 +28,14 @@
                   </div>
 
                     <!--Join Button-->
-                    <%= simple_form_for [@activity, @booking] do |f| %>
-                    <%= f.submit "Join", class: "btn btn-primary" %>
+                   <% if current_user == @activity.owner %>
+                    <!--Edit button not yet functional-->
+                      <%= link_to "Edit", edit_activity_path(@activity), class: "btn btn-primary" %>
+                    <% elsif current_user != @activity.owner %>
+                      <%= simple_form_for [@activity, @booking] do |f| %>
+                      <%= f.submit "Join", class: "btn btn-primary" %>
+                      <% end %>
                     <% end %>
-
                 </div>
             </div>
         </div>
@@ -53,9 +58,9 @@
             data-map-center-longitude-value="<%= @activity_coordinates[1] %>"
             data-map-markers-value="<%= @markers.to_json %>"
             data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+            </div>
         </div>
     </div>
-
 
     <!-- Message Box -->
   <div class="col-12">
@@ -73,4 +78,3 @@
       </div>
     </div>
   </div>
-</div>
