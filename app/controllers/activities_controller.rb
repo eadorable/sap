@@ -2,10 +2,15 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show]
 
   def index
-    @activities = Activity.all
+    if params[:tag].present?
+      @category_id = Category.find_by(name: params[:tag]).id
+      @activities = Activity.where(category_id: @category_id)
+    else
+      @activities = Activity.all
+    end
+
     @categories = Category.all
     @categories_name = Category.all.pluck(:name)
-    raise
     if params[:query].present?
       @activities = Activity.all.global_search(params[:query])
     end
