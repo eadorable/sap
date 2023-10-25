@@ -2,6 +2,9 @@ class Activity < ApplicationRecord
   belongs_to :category
   belongs_to :owner, foreign_key: 'owner_id', class_name: 'User'
 
+  has_many :bookings
+  # has_many :chatrooms, through: :bookings
+
   scope :upcoming, -> { find_future_activities }
 
   geocoded_by :address

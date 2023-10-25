@@ -68,18 +68,27 @@
   </div>
 
     <!-- Message Box -->
-  <div class="col-12">
-    <div class="card mt-2 m-0 mb-3">
-      <div class="card-body">
-        <h5 class="card-title">Message Center</h5>
-        <div class="message-box-container">
-          <form>
-            <div class="form-group">
-              <textarea class="form-control mb-2" rows="3" placeholder="Type your message..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send</button>
-          </form>
-        </div>
+  <div class="container chatroom">
+  <h1>#<%= @activity.name %></h1>
+
+  <div class="messages">
+    <% @chatroom.messages.each do |message| %>
+      <div id="message-<%= message.id %>">
+        <small>
+          <strong><%= message.user.first_name %></strong>
+          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+        </small>
+        <p><%= message.content %></p>
       </div>
-    </div>
+    <% end %>
   </div>
+    <%= simple_form_for [@chatroom, @message],
+    html: {class: "d-flex"} do |f|%>
+    <%= f.input :content,
+      label: false,
+      placeholder: "Message ##{@chatroom.name}",
+      wrapper_html: {class: "flex-grow-1"}
+    %>
+    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+    <% end %>
+</div>

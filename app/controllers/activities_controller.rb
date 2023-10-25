@@ -19,6 +19,11 @@ class ActivitiesController < ApplicationController
     @activity_coordinates = [@activity.latitude, @activity.longitude]
     @markers = geocoded_activity_markers
     @booking = Booking.new
+
+    # this is for the chatroom
+    # @booking_participant = Booking.joins(:activity).where(bookings: { participant: current_user, status: true })
+    @chatroom = Chatroom.find(params[:id])
+    @message = Message.new
   end
 
   def new
