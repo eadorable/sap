@@ -4,7 +4,8 @@ class ActivitiesController < ApplicationController
   def index
     @activities = Activity.all
     @categories = Category.all
-
+    @categories_name = Category.all.pluck(:name)
+    raise
     if params[:query].present?
       @activities = Activity.all.global_search(params[:query])
     end
