@@ -3,9 +3,6 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :activities do
     resources :bookings, only: %i[create]
-    resources :chatrooms, only: :show do
-      resources :messages, only: :create
-    end
   end
 
   resources :bookings, only: %i[show index] do
@@ -16,7 +13,7 @@ Rails.application.routes.draw do
   end
   get 'dashboard', to: 'pages#dashboard'
 
-  # resources :chatrooms, only: :show do
-  #   resources :messages, only: :create
-  # end
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 end

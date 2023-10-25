@@ -22,8 +22,8 @@ class ActivitiesController < ApplicationController
 
     # this is for the chatroom
     # @booking_participant = Booking.joins(:activity).where(bookings: { participant: current_user, status: true })
-    @chatroom = Chatroom.find(params[:id])
-    @message = Message.new
+    # @chatroom = Chatroom.find(params[:id])
+    # @message = Message.new
   end
 
   def new
