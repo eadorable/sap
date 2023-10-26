@@ -77,7 +77,8 @@
         </div>
     </div>
     <!-- Message Box -->
-    <% if @activity_booked%>
+    <!--Display message box to activity owner or activity participants-->
+    <% if @activity_booked || current_user == @activity.owner%>
 
       <div>
         <%= render partial: "chatroom", locals: {activity: @activity, chatroom: @chatroom, message: @message}%>
