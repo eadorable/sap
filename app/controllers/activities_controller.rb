@@ -20,10 +20,8 @@ class ActivitiesController < ApplicationController
     @markers = geocoded_activity_markers
     @booking = Booking.new
 
-    # this is for the chatroom
-    # @booking_participant = Booking.joins(:activity).where(bookings: { participant: current_user, status: true })
-    # @chatroom = Chatroom.find(params[:id])
-    # @message = Message.new
+    @chatroom = @activity.chatroom
+    @message = Message.new
   end
 
   def new
@@ -33,6 +31,7 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(activity_params)
     @activity.owner = current_user
+    @activity.chatroom = Chatroom.new
 
     if @activity.save
       redirect_to activities_path

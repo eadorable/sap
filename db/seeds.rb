@@ -1,6 +1,7 @@
 require 'faker'
 
 puts "Cleaning up database..."
+Message.destroy_all
 Booking.destroy_all
 Activity.destroy_all
 Category.destroy_all
@@ -66,7 +67,8 @@ addresses = [
     owner: users.sample,  # Use sample to select a random user
     difficulty: difficulty.sample,
     equipment: Faker::Lorem.word,
-    category: Category.all.sample  # Use Category.first to select the first category
+    category: Category.all.sample,  # Use Category.first to select the first category
+    chatroom: Chatroom.new
   )
 end
 puts "DB created"
