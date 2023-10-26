@@ -66,7 +66,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Comfortable hiking shoes',
-  category: outdoor
+  category: outdoor,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Indoor Rock Climbing',
@@ -76,7 +77,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Athletic wear and sneakers',
-  category: indoor
+  category: indoor,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Visiting a Museum',
@@ -86,7 +88,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Apron or old clothes',
-  category: art
+  category: art,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Culinary Delights Masterclass',
@@ -96,7 +99,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Appetite for delicious food',
-  category: cooking
+  category: cooking,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Football',
@@ -106,7 +110,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Sports gear and appropriate clothing',
-  category: sport
+  category: sport,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Wellness and Fitness Retreat',
@@ -116,7 +121,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Yoga mat',
-  category: fitness
+  category: fitness,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Community Care Day',
@@ -126,7 +132,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Comfortable clothing for volunteering',
-  category: community
+  category: community,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Board Game Bonanza',
@@ -136,7 +143,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Favorite board games or card decks',
-  category: games
+  category: games,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Holistic Health and Wellness Workshop',
@@ -146,7 +154,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Comfortable clothing for yoga or meditation',
-  category: health
+  category: health,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Hobby Enthusiasts Gathering',
@@ -156,7 +165,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Your hobby equipment or materials',
-  category: hobbies
+  category: hobbies,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Language Exchange Fiesta',
@@ -166,7 +176,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Openness to new languages and experiences',
-  category: languages
+  category: languages,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Harmonious Melodies Concert',
@@ -176,7 +187,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Love for live music',
-  category: music
+  category: music,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Social Soiree: Mix and Mingle',
@@ -186,7 +198,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Friendly and open attitude',
-  category: social
+  category: social,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Support Circle: Finding Strength Together',
@@ -196,7 +209,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Openness to share and listen',
-  category: support
+  category: support,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Dance Fusion Fever',
@@ -206,7 +220,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Dance-appropriate clothing and shoes',
-  category: dance
+  category: dance,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Paws and Play: Pet Adoption Event',
@@ -216,7 +231,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Pet adoption application',
-  category: pets
+  category: pets,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Tennis Tournament',
@@ -226,7 +242,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Tennis racket, tennis balls, tennis shoes',
-  category: sport
+  category: sport,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Basketball Pickup Game',
@@ -236,7 +253,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Basketball shoes, comfortable athletic attire',
-  category: sport
+  category: sport,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Wellness Workshop',
@@ -246,7 +264,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'An open mind for learning and self-care',
-  category: support
+  category: support,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Memory Lane: Reminiscence Group',
@@ -256,7 +275,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: "Any memorabilia or photographs you'd like to discuss, a journal",
-  category: support
+  category: support,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Supportive Caregiver Symposium',
@@ -266,7 +286,8 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Any relevant medical or caregiving documents',
-  category: support
+  category: support,
+  chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Peaceful Minds Meditation Gathering',
@@ -276,6 +297,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Comfortable clothing, a cushion or mat for sitting, and an open, tranquil mind.',
-  category: support
+  category: support,
+  chatroom: Chatroom.new
 )
 puts "DB created"
