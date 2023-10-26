@@ -20,6 +20,11 @@ class ActivitiesController < ApplicationController
     @markers = geocoded_activity_markers
     @booking = Booking.new
 
+    # looking for the bookings of the current user that are approved
+    @activities_booked = current_user.bookings.where(status: true)
+    # looking for the booking of the current user that is approved and has the activity of the current page
+    @activity_booked = @activities_booked.find_by(activity_id: @activity.id)
+
     @chatroom = @activity.chatroom
     @message = Message.new
   end
