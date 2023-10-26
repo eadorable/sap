@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :bookings, only: %i[create]
   end
 
-  resources :bookings, only: %i[show index] do
+  resources :bookings, only: %i[show index destroy] do
     member do
       get :accept # => bookings#accept, need to check if get or patch
       get :decline # => bookings#decline, need to check if get or patch

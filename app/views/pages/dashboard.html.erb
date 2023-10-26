@@ -1,17 +1,21 @@
 <h1>I am dashboard</h1>
 <!--Activities you own-->
-<h3>Activities I own(<%=@my_activities.count %>)</h3>
+<h3>Activities I own (<%=@my_activities.count %>)</h3>
 <% @my_activities.each do |activity| %>
 <ul>
   <li><%= "#{activity.name} " %></li>
+    <p class="delete-edit-btn">
+      <%= link_to "Delete", activity_path(activity.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn" %>
+      <%= link_to "Edit", edit_activity_path(activity.id), class: "btn btn-outline-primary link-btn m-1" %>
+    </p>
 </ul>
 <% end %>
 
 <!--Activities you book as participant-->
-<h3>My bookings(<%=@my_bookings.count %>)</h3>
+<h3>My bookings (<%=@my_bookings.count %>)</h3>
 <% @my_bookings.each do |booking| %>
 <ul>
-  <li><%= "#{booking.activity.name} #{booking.activity.address} #{booking.activity.date_time}" %>
+  <li><%= "#{booking.activity.name} #{booking.activity.address} #{booking.activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M')}" %>
     <% if booking.status == nil %>
       <%= "For review" %>
     <% elsif booking.status == false %>
@@ -19,22 +23,25 @@
     <% else %>
       <%= "Approved" %>
     <% end %></li>
+    <p class="delete-edit-btn">
+      <%= link_to "Delete", booking_path(booking.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn" %>
+    </p>
 </ul>
 <% end %>
 
 <!--Activities booked by participants that you approved-->
-<h3>Booked by Participants(<%=@participants_booked.count %>)</h3>
+<h3>Booked by Participants (<%=@participants_booked.count %>)</h3>
 <% @participants_booked.each do |booked| %>
 <ul>
-  <li><%= "#{booked.participant.first_name} #{booked.activity.name} #{booked.activity.date_time} " %></li>
+  <li><%= "#{booked.participant.first_name} #{booked.activity.name} #{booked.activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M')} " %></li>
 </ul>
 <% end %>
 
 <!--Activities waiting for your review-->
-<h3>Pending Bookings(<%=@participants_pending.count %>)</h3>
+<h3>Pending Bookings (<%=@participants_pending.count %>)</h3>
 <% @participants_pending.each do |pending| %>
 <ul>
-  <li><%= "#{pending.participant.first_name} #{pending.activity.name} #{pending.activity.date_time} " %></li>
+  <li><%= "#{pending.participant.first_name} #{pending.activity.name} #{pending.activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M')} " %></li>
 </ul>
 <% end %>
 <!--Display link to accept and decline page when there's an existing booking request-->
@@ -45,9 +52,9 @@
 <% end %>
 
 <!--Activities requested by participant that you declined-->
-<h3>Declined Bookings(<%=@participants_declined.count %>)</h3>
+<h3>Declined Bookings (<%=@participants_declined.count %>)</h3>
 <% @participants_declined.each do |declined| %>
 <ul>
-  <li><%= "#{declined.participant.first_name} #{declined.activity.name} #{declined.activity.date_time} " %></li>
+  <li><%= "#{declined.participant.first_name} #{declined.activity.name} #{declined.activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M')} " %></li>
 </ul>
 <% end %>
