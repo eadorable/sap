@@ -1,6 +1,7 @@
 class Activity < ApplicationRecord
   belongs_to :category
   belongs_to :owner, foreign_key: 'owner_id', class_name: 'User'
+  has_many_attached :photos
 
   has_many :bookings
   has_one :chatroom, dependent: :destroy
