@@ -2,9 +2,15 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show]
 
   def index
-    @activities = Activity.all
+    if params[:tag].present?
+      @category_id = Category.find_by(name: params[:tag]).id
+      @activities = Activity.where(category_id: @category_id)
+    else
+      @activities = Activity.all
+    end
+    
     @categories = Category.all
-
+    @categories_name = Category.all.pluck(:name)
     if params[:query].present?
       @activities = Activity.all.global_search(params[:query])
     end
@@ -34,6 +40,22 @@ class ActivitiesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @activity = Activity.find(params[:id])
+  end
+
+  def update
+    @activity = Activity.find(params[:id])
+    @activity.update(activity_params)
+    redirect_to activity_path(@activity)
+  end
+
+  def destroy
+    @activity = Activity.find(params[:id])
+    @activity.destroy
+    redirect_to dashboard_path
   end
 
   private
