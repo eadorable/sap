@@ -1,4 +1,5 @@
 <%= form_tag(activities_path, method: 'get') do %>
+
   <div class="input-group rounded p-3">
     <%= label_tag %>
     <%= select_tag 'category_id', options_for_select(@categories.map { |c| [c.name, c.id] }, params[:category_id]), include_blank: 'All categories' %>
@@ -11,6 +12,23 @@
   </div>
 <% end %>
 
+    <div class="search--bar">
+        <%= label_tag %>
+        <%= text_field_tag :query, params[:query], class: "input mb-3" ,placeholder: "Search activities" %>
+        <%= submit_tag 'Search', class: 'btn btn-primary search--button' %>
+
+
+    </div>
+<% end %>
+<br>
+<div class="bloobers--container">
+  <% @categories_name.each do |category| %>
+    <div class="bloob" style="background-color:<%= category == params[:tag] ? '#7E73FF' : '' %>";>
+      <%= link_to category, activities_path(tag: category)  %>
+    </div>
+  <% end %>
+</div>
+<br>
 <div class="container">
   <div class="cards">
     <% @activities.each do |activity| %>
@@ -26,7 +44,7 @@
             <% end %>
             <p>Address: <%= activity.address %></p>
             <p>Equipment: <%= activity.equipment %></p>
-            <p>Description: <%= activity.description %></p>
+            <p>activity creator:<%= activity.owner.first_name %></p>
             <p>Date & time: <%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></p>
             <p>Difficulty:
               <% difficulty = activity.difficulty %>
