@@ -8,7 +8,7 @@ class ActivitiesController < ApplicationController
     else
       @activities = Activity.all
     end
-    
+
     @categories = Category.all
     @categories_name = Category.all.pluck(:name)
     if params[:query].present?
@@ -26,9 +26,17 @@ class ActivitiesController < ApplicationController
     @markers = geocoded_activity_markers(@activity)
     @booking = Booking.new
 
+
     # Fetch additional activities for display. It will only display 3 activities
     # @activities = Activity.where.not(id: @activity.id).limit(3)
     @activities = Activity.where.not(id: @activity.id).order("RANDOM()").limit(3)
+
+    # looking for the bookings of the current user that are approved
+    @activities_booked = current_user.bookings.where(status: true)
+    # looking for the booking of the current user that is approved and has the activity of the current page
+    @activity_booked = @activities_booked.find_by(activity_id: @activity.id)
+    @chatroom = @activity.chatroom
+    @message = Message.new
   end
 
   def new
@@ -38,6 +46,7 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(activity_params)
     @activity.owner = current_user
+    @activity.chatroom = Chatroom.new
     if @activity.save
       @activity.geocode
       redirect_to activities_path
