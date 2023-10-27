@@ -6,18 +6,24 @@
   </div>
   <div class="form-group rounded p-2">
     <%= label_tag %>
-    <%= text_field_tag :query, params[:query], class: "input mb-3" ,placeholder: "search activities" %>
+    <%= text_field_tag :query, params[:query], class: "input mb-3", placeholder: "search activities" %>
     <%= submit_tag 'Search', class: 'btn btn-primary' %>
   </div>
 <% end %>
 
 <div class="container">
-      <div class="cards">
-      <% @activities.each do |activity| %>
-            <%= link_to activity_path(activity) do %>
-            <div class="custom--card mt-2">
-            <p class="text-center"><%= activity.name %></p>
-              <div class="m-4"><%= image_tag("bar.png") %>
+  <div class="cards">
+    <% @activities.each do |activity| %>
+      <%= link_to activity_path(activity) do %>
+        <div class="custom--card mt-2">
+          <p class="text-center"><%= activity.name %></p>
+          <div class="m-4">
+            <% if activity.photos.present? %>
+              <%= cl_image_tag activity.photos.first.key, class: "carousel-image", alt: "Activity Photo" %>
+            <% else %>
+              <!-- Use the default photo when no photos are available -->
+              <%= image_tag "bar.png", class: "carousel-image", alt: "Default Activity Photo" %>
+            <% end %>
             <p>Address: <%= activity.address %></p>
             <p>Equipment: <%= activity.equipment %></p>
             <p>Description: <%= activity.description %></p>
@@ -31,10 +37,11 @@
                 <% else %>
                   <i class="fa-regular fa-circle"></i>
                 <% end %>
-              <% end %></p>
-              </div>
-      </div>
-         <% end %>
-      <% end%>
-    </div>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
+</div>

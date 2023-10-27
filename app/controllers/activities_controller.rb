@@ -19,6 +19,10 @@ class ActivitiesController < ApplicationController
     # @activity_coordinates = [@activity.latitude, @activity.longitude]
     @markers = geocoded_activity_markers(@activity)
     @booking = Booking.new
+
+    # Fetch additional activities for display. It will only display 3 activities
+    # @activities = Activity.where.not(id: @activity.id).limit(3)
+    @activities = Activity.where.not(id: @activity.id).order("RANDOM()").limit(3)
   end
 
   def new
@@ -40,7 +44,7 @@ class ActivitiesController < ApplicationController
 
   def activity_params
     params.require(:activity).permit(:name, :address, :date_time, :description, :difficulty, :equipment, :category_id,
-                                     :owner_id, photos: [])
+                                    :owner_id, photos: [])
   end
 
   def set_activity

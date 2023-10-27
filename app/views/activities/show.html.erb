@@ -1,9 +1,8 @@
 <div class="container">
   <div class="row justify-content-center mt-1">
-
-        <!-- Activity Image Carousel -->
-        <div class="col-12">
-        <div id="activityImageCarousel" class="carousel slide" data-bs-ride="carousel">
+    <!-- Activity Image Carousel -->
+    <div class="col-12">
+      <div id="activityImageCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <!-- Loop through activity photos and create carousel items -->
           <% @activity.photos.each_with_index do |photo, index| %>
@@ -15,69 +14,68 @@
         </div>
 
         <!-- Carousel navigation button (Previous) -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carImageCarousel" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#activityImageCarousel" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
         <!-- Carousel navigation button (Next) -->
-        <button class="carousel-control-next" type="button" data-bs-target="#carImageCarousel" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#activityImageCarousel" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+    </div>
 
     <!-- Description -->
     <div class="row">
-        <div class="col-12">
-            <div class="card mt-2 m-0 mb-2">
-                <div class="card-body">
-
-                    <!-- Activity Description -->
-                    <div class="description-container">
-                        <% if @activity.present? %>
-                            <h4 class="card-title my-1"><%= @activity.name %></h4>
-                            <p class="card-text mt-2 mb-2"><%= @activity.description %></p>
-                        <% else %>
-                            <p>Activity details</p>
-                        <% end %>
-                  </div>
-
-                    <!--Join Button-->
-                   <% if current_user == @activity.owner %>
-
-                    <!--Edit button not yet functional-->
-                      <%= link_to "Edit", edit_activity_path(@activity), class: "btn btn-primary" %>
-                    <% elsif current_user != @activity.owner %>
-                      <%= simple_form_for [@activity, @booking] do |f| %>
-                      <%= f.submit "Join", class: "btn btn-primary" %>
-                      <% end %>
-                    <% end %>
-                </div>
+      <div class="col-12">
+        <div class="card mt-2 m-0 mb-2">
+          <div class="card-body">
+            <!-- Activity Description -->
+            <div class="description-container">
+              <% if @activity.present? %>
+                <h4 class="card-title my-1"><%= @activity.name %></h4>
+                <p class="card-text mt-2 mb-2"><%= @activity.description %></p>
+              <% else %>
+                <p>Activity details</p>
+              <% end %>
             </div>
+
+            <!-- Join Button -->
+            <% if current_user == @activity.owner %>
+              <!-- Edit button not yet functional -->
+              <%= link_to "Edit", edit_activity_path(@activity), class: "btn btn-primary" %>
+            <% elsif current_user != @activity.owner %>
+              <%= simple_form_for [@activity, @booking] do |f| %>
+                <%= f.submit "Join", class: "btn btn-primary" %>
+              <% end %>
+            <% end %>
           </div>
+        </div>
       </div>
+    </div>
   </div>
 
-<!-- Full Address -->
+  <!-- Full Address -->
   <div class="row my-0 mb-0">
     <div class="col-12">
       <p><%= @activity.address %></p>
     </div>
   </div>
 
-    <!-- Map -->
-    <div class="row my-0 mt-0">
-        <div class="col-12">
-            <!-- Mapbox container and data attributes -->
-            <div class="map-container"
-            data-controller="map"
-            data-map-markers-value="<%= @markers.to_json %>"
-            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-            </div>
-        </div>
+  <!-- Map -->
+  <div class="row my-0 mt-0">
+    <div class="col-12">
+      <!-- Mapbox container and data attributes -->
+      <div class="map-container"
+           data-controller="map"
+           data-map-markers-value="<%= @markers.to_json %>"
+           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
     </div>
+  </div>
 
-    <!-- Message Box -->
+  <!-- Message Box -->
   <div class="col-12">
     <div class="card mt-2 m-0 mb-3">
       <div class="card-body">
@@ -93,3 +91,51 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- Display additional activities -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <!-- Your existing code for creating a new activity -->
+
+  <!-- Display additional activities -->
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    <div class="col-12">
+      <h3>Similar Activities</h3>
+      <div class="row">
+        <% @activities.each do |activity| %>
+          <div class="col-12 col-md-4 mb-4">
+            <%= link_to activity_path(activity) do %> <!-- Wrap the entire card content in a link -->
+              <div class="card">
+                <div class="card-body">
+                  <!-- Activity Image -->
+                  <% if activity.photos.present? %>
+                    <%= cl_image_tag activity.photos.first.key, class: "card-img-top", alt: "Activity Photo" %>
+                  <% else %>
+                    <!-- Use a default image if no photos are available -->
+                    <%= image_tag "bar.png", class: "card-img-top", alt: "Default Activity Photo" %>
+                  <% end %>
+
+                  <!-- Activity Details -->
+                  <h5 class="card-title"><strong><%= activity.name %></strong></h5>
+                  <p class="card-text"><%= activity.description %></p>
+
+                  <!-- Join Button -->
+                  <% if current_user == activity.owner %>
+                    <%= link_to "Edit", edit_activity_path(activity), class: "btn btn-primary" %>
+                  <% else %>
+                    <%= simple_form_for [activity, Booking.new] do |f| %>
+                      <%= f.submit "Join", class: "btn btn-primary" %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %> <!-- Close the link here -->
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
