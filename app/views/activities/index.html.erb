@@ -17,8 +17,7 @@
         <%= text_field_tag :query, params[:query], class: "input mb-3" ,placeholder: "Search activities" %>
         <%= submit_tag 'Search', class: 'btn btn-primary search--button' %>
     </div>
-<% end %>
-<br>
+
 <div class="bloobers--container">
   <% @categories_name.each do |category| %>
     <div class="bloob" style="background-color:<%= category == params[:tag] ? '#7E73FF' : '' %>";>
