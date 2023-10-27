@@ -58,7 +58,7 @@
       </div>
   </div>
 
-<!-- Full Address -->
+  <!-- Full Address -->
   <div class="row my-0 mb-0">
     <div class="col-12">
       <p><%= @activity.address %></p>
@@ -76,20 +76,13 @@
             </div>
         </div>
     </div>
-
     <!-- Message Box -->
-  <div class="col-12">
-    <div class="card mt-2 m-0 mb-3">
-      <div class="card-body">
-        <h5 class="card-title">Message Center</h5>
-        <div class="message-box-container">
-          <form>
-            <div class="form-group">
-              <textarea class="form-control mb-2" rows="3" placeholder="Type your message..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send</button>
-          </form>
-        </div>
+    <!--Display message box to activity owner or activity participants-->
+    <% if @activity_booked || current_user == @activity.owner%>
+
+      <div>
+        <%= render partial: "chatroom", locals: {activity: @activity, chatroom: @chatroom, message: @message}%>
       </div>
-    </div>
-  </div>
+
+    <% end %>
+</div>
