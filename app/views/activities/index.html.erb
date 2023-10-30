@@ -1,31 +1,25 @@
+<!-- Select category -->
+<div data-controller="bloober" class="accordions--categories mt-3">
+  <button data-action="click->bloober#myFunction" class="btn btn-secondary mb-3 ">Select a category</button>
+    <div id="Demo1" class="w3-container d-none" data-bloober-target="dropdown">
+        <% @categories.each do |category| %>
+        <div class="accordions">
+          <%= link_to category.name, activities_path(category_id: category.id) %>
+        </div>
+        <% end %>
+    </div>
+</div>
+
+<!-- Search button -->
 <%= form_tag(activities_path, method: 'get') do %>
-
-  <div class="input-group rounded p-3">
-    <%= label_tag %>
-    <%= select_tag 'category_id', options_for_select(@categories.map { |c| [c.name, c.id] }, params[:category_id]), include_blank: 'All categories' %>
-    <%= submit_tag "Filter", class: "btn btn-success" %>
-  </div>
-  <div class="form-group rounded p-2">
-    <%= label_tag %>
-    <%= text_field_tag :query, params[:query], class: "input mb-3", placeholder: "search activities" %>
-    <%= submit_tag 'Search', class: 'btn btn-primary' %>
-  </div>
-<% end %>
-
-    <div class="search--bar">
+    <div class="search--bar mt-2">
         <%= label_tag %>
         <%= text_field_tag :query, params[:query], class: "input mb-3" ,placeholder: "Search activities" %>
-        <%= submit_tag 'Search', class: 'btn btn-primary search--button' %>
+        <%= submit_tag 'Search', class: 'search--button' %>
     </div>
+<% end %>
 
-<div class="bloobers--container">
-  <% @categories_name.each do |category| %>
-    <div class="bloob" style="background-color:<%= category == params[:tag] ? '#7E73FF' : '' %>";>
-      <%= link_to category, activities_path(tag: category)  %>
-    </div>
-  <% end %>
-</div>
-<br>
+<!-- Cards -->
 <div class="container">
   <div class="cards">
     <% @activities.each do |activity| %>

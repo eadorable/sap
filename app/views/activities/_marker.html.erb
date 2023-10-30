@@ -2,5 +2,6 @@
   <%= activity.name %>
 </div>-->
 
-<%= image_tag "logo.png", height: 30, width: 30, alt: "Logo" %>
-<p><%= activity.address %></p> <!-- Add the address here -->
+
+
+<%= image_tag Category.icon_creator(activity.category.name), height: 30, width: 30, alt: "Logo" %>
