@@ -1,19 +1,32 @@
-.bloobers--container {
-  display: inline-block;
-  .bloob {
-     cursor: pointer;
-     display: inline-block;
-     font-size: 0.9rem;
-     border-radius: 50rem;
-     padding: 0.1rem 0.5rem;
-     background-color: #ECEAFF;
-     color: #7E73FF;
-     border: 1px solid #7E73FF;
-     margin-right: 0.6rem;
-     margin-bottom: 0.4rem;
-  }
+
+.accordions--categories {
+  padding: 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background-color: #f1f1f1;
+  width: 100%;
+   .accordions {
+      border: 2px solid #ddd;
+      width: 100%;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 5px;
+      background-color: #f1f1f1;
+      text-align: left;
+      font-size: 16px;
+      font-weight: bold;
+    }
 }
-.bloob:hover {
- background-color: #7E73FF;
- color: white;
+
+.accordions--categories button {
+  font-size: 22px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: inherit;
+  color: #000;
+  font-weight: bold;
 }
