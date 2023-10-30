@@ -29,22 +29,14 @@ users_data.each do |user_data|
 end
 
 puts "Creating categories..."
-outdoor = Category.create!(name: 'Outdoor')
-indoor = Category.create!(name: 'Indoor')
-art = Category.create!(name: 'Art')
-cooking = Category.create!(name: 'Cooking')
-sport = Category.create!(name: 'Sport')
-fitness = Category.create!(name: 'Fitness')
-community = Category.create!(name: 'Community')
-games = Category.create!(name: 'Games')
-health = Category.create!(name: 'Health')
-hobbies = Category.create!(name: 'Hobbies')
-languages = Category.create!(name: 'Languages')
-music = Category.create!(name: 'Music')
-social = Category.create!(name: 'Social')
+wellness = Category.create!(name: 'Wellness')
 support = Category.create!(name: 'Support')
-dance = Category.create!(name: 'Dance')
-pets = Category.create!(name: 'Pets')
+community = Category.create!(name: 'Community')
+fitness = Category.create!(name: 'Fitness')
+outdoors = Category.create!(name: 'Outdoors')
+learning = Category.create!(name: 'Learning')
+arts = Category.create!(name: 'Arts')
+entertainment = Category.create!(name: 'Entertainment')
 
 puts "Creating activities..."
 class Time
@@ -66,7 +58,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Comfortable hiking shoes',
-  category: outdoor,
+  category: outdoors,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -77,7 +69,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Athletic wear and sneakers',
-  category: indoor,
+  category: fitness,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -88,18 +80,18 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Apron or old clothes',
-  category: art,
+  category: arts,
   chatroom: Chatroom.new
 )
 Activity.create!(
   name: 'Culinary Delights Masterclass',
-  address: 'Mohrenstrasse 37, 10117 Berlin Germany',
+  address: 'Mohrenstrasse 37, 10117 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Discover your culinary talents with cooking classes and gastronomic experiences.',
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Appetite for delicious food',
-  category: cooking,
+  category: learning,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -110,11 +102,11 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Sports gear and appropriate clothing',
-  category: sport,
+  category: fitness,
   chatroom: Chatroom.new
 )
 Activity.create!(
-  name: 'Wellness and Fitness Retreat',
+  name: 'Fitness Retreat',
   address: 'Dorotheenstraße 84, 10117 Berlin, Germany',
   date_time: create_random_date_time,
   description: 'Improve your fitness and well-being through yoga, workouts, and more.',
@@ -143,7 +135,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Favorite board games or card decks',
-  category: games,
+  category: entertainment,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -154,7 +146,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Comfortable clothing for yoga or meditation',
-  category: health,
+  category: wellness,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -165,7 +157,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Your hobby equipment or materials',
-  category: hobbies,
+  category: entertainment,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -176,7 +168,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Openness to new languages and experiences',
-  category: languages,
+  category: learning,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -187,7 +179,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Love for live music',
-  category: music,
+  category: entertainment,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -198,7 +190,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Friendly and open attitude',
-  category: social,
+  category: community,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -220,7 +212,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Dance-appropriate clothing and shoes',
-  category: dance,
+  category: entertainment,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -231,7 +223,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Pet adoption application',
-  category: pets,
+  category: support,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -242,7 +234,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Tennis racket, tennis balls, tennis shoes',
-  category: sport,
+  category: fitness,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -253,7 +245,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'Basketball shoes, comfortable athletic attire',
-  category: sport,
+  category: fitness,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -264,7 +256,7 @@ Activity.create!(
   owner: users.sample,
   difficulty: rand(1..5),
   equipment: 'An open mind for learning and self-care',
-  category: support,
+  category: wellness,
   chatroom: Chatroom.new
 )
 Activity.create!(
