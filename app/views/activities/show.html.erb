@@ -4,23 +4,29 @@
     <div class="col-12">
       <div id="activityImageCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <!-- Loop through activity photos and create carousel items -->
-          <% @activity.photos.each_with_index do |photo, index| %>
-            <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-              <!-- Display activity image using Cloudinary's 'cl_image_tag' helper -->
-              <%= cl_image_tag photo.key, class: "carousel-image" %>
+          <!-- Check if there are any photos; if not, display the default image -->
+          <% if @activity.photos.present? %>
+            <% @activity.photos.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+                <!-- Display activity image using Cloudinary's 'cl_image_tag' helper -->
+                <%= cl_image_tag photo.key, class: "carousel-image" %>
+              </div>
+            <% end %>
+          <% else %>
+            <!-- Use the default photo when no photos are available -->
+            <div class="carousel-item active">
+              <%= image_tag "bar.png", class: "carousel-image", alt: "Default Activity Photo" %>
             </div>
           <% end %>
         </div>
 
-        <!-- Carousel navigation button (Previous) -->
+        <!-- Carousel navigation buttons (Previous and Next) -->
         <button class="carousel-control-prev" type="button" data-bs-target="#activityImageCarousel" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <!-- Carousel navigation button (Next) -->
         <button class="carousel-control-next" type="button" data-bs-target="#activityImageCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="carousel-control-next-icon" ariahidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
@@ -35,12 +41,20 @@
             <div class="description-container costum--container">
               <% if @activity.present? %>
                 <h4 class="card-title my-1"><%= @activity.name %></h4>
-                <p class="card-text mt-2 mb-2"><%= @activity.description %></p>
+                <p class="card-text mt-2 mb-2">
+                  <strong>Activity Creator:</strong> <%= @activity.owner.first_name %>
+                  <br>
+                  <strong>Participants:</strong>
+                  <% @activity.participants.shuffle.first(5).each do |participant| %>
+                    <%= participant.first_name %>,
+                  <% end %>
+                </p>
+                <%= link_to "Join", activity_path(@activity), class: "btn btn-primary" %>
               <% else %>
                 <p>Activity details</p>
               <% end %>
             </div>
-
+            
             <!-- Join Button -->
             <% if current_user == @activity.owner %> <!-- If the current user is the activity owner -->
                <!-- Chatroom link -->
@@ -82,9 +96,15 @@
       </div>
     </div>
   </div>
+  
+  <!-- Message Box -->
+  <!-- Display message box to activity owner or activity participants -->
+  <% if @activity_booked || current_user == @activity.owner %>
+    <%= render partial: "chatroom", locals: { activity: @activity, chatroom: @chatroom, message: @message } %>
+  <% end %>
 </div>
 
-  <!-- Display additional activities -->
+<!-- Display additional activities -->
 <div class="container">
   <div class="row justify-content-center mt-4">
     <div class="col-12">
@@ -123,3 +143,4 @@
       </div>
     </div>
   </div>
+</div>

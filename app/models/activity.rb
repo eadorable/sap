@@ -5,6 +5,7 @@ class Activity < ApplicationRecord
 
   has_many :bookings, dependent: :destroy
   has_one :chatroom, dependent: :destroy
+  has_many :participants, through: :bookings, source: :participant
 
   scope :upcoming, -> { find_future_activities }
 
