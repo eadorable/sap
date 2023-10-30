@@ -42,10 +42,18 @@
             </div>
 
             <!-- Join Button -->
-            <% if current_user == @activity.owner %>
-              <!-- Edit button not yet functional -->
-              <%= link_to "Edit", edit_activity_path(@activity), class: "btn btn-primary" %>
-            <% elsif current_user != @activity.owner %>
+            <% if current_user == @activity.owner %> <!-- If the current user is the activity owner -->
+               <!-- Chatroom link -->
+              <%= link_to "Chatroom", chatroom_path(@chatroom), class: "btn btn-primary" %>
+            <% elsif @activity_booked %>
+              <%= link_to "Chatroom", chatroom_path(@chatroom), class: "btn btn-primary" %>
+              <%= link_to "Leave", booking_path(@activity_booked), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
+            <% elsif @activity_pending %>
+              <p>Waiting for approval</p>
+              <%= link_to "Cancel", booking_path(@activity_pending), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
+            <% elsif @activity_declined %>
+              <p>Declined</p>
+            <% else %>
               <%= simple_form_for [@activity, @booking] do |f| %>
                 <%= f.submit "Join", class: "btn btn-primary" %>
               <% end %>
@@ -74,12 +82,6 @@
       </div>
     </div>
   </div>
-
-      <!-- Message Box -->
-    <!--Display message box to activity owner or activity participants-->
-    <% if @activity_booked || current_user == @activity.owner%>
-      <%= render partial: "chatroom", locals: {activity: @activity, chatroom: @chatroom, message: @message}%>
-    <% end %>
 </div>
 
   <!-- Display additional activities -->
