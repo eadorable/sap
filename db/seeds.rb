@@ -59,6 +59,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Comfortable hiking shoes',
   category: outdoors,
+  max_count: 10,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -70,6 +71,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Athletic wear and sneakers',
   category: fitness,
+  max_count: 9,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -81,6 +83,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Apron or old clothes',
   category: arts,
+  max_count: 8,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -92,6 +95,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Appetite for delicious food',
   category: learning,
+  max_count: 7,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -103,6 +107,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Sports gear and appropriate clothing',
   category: fitness,
+  max_count: 6,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -114,6 +119,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Yoga mat',
   category: fitness,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -125,6 +131,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Comfortable clothing for volunteering',
   category: community,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -136,6 +143,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Favorite board games or card decks',
   category: entertainment,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -147,6 +155,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Comfortable clothing for yoga or meditation',
   category: wellness,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -158,6 +167,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Your hobby equipment or materials',
   category: entertainment,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -169,6 +179,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Openness to new languages and experiences',
   category: learning,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -180,6 +191,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Love for live music',
   category: entertainment,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -191,6 +203,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Friendly and open attitude',
   category: community,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -202,6 +215,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Openness to share and listen',
   category: support,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -213,6 +227,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Dance-appropriate clothing and shoes',
   category: entertainment,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -224,6 +239,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Pet adoption application',
   category: support,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -235,6 +251,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Tennis racket, tennis balls, tennis shoes',
   category: fitness,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -246,6 +263,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Basketball shoes, comfortable athletic attire',
   category: fitness,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -257,6 +275,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'An open mind for learning and self-care',
   category: wellness,
+  max_count: 5,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -268,6 +287,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: "Any memorabilia or photographs you'd like to discuss, a journal",
   category: support,
+  max_count: 10,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -279,6 +299,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Any relevant medical or caregiving documents',
   category: support,
+  max_count: 10,
   chatroom: Chatroom.new
 )
 Activity.create!(
@@ -290,6 +311,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Comfortable clothing, a cushion or mat for sitting, and an open, tranquil mind.',
   category: support,
+  max_count: 10,
   chatroom: Chatroom.new
 )
 puts "DB created"
