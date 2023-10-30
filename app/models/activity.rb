@@ -28,4 +28,5 @@ class Activity < ApplicationRecord
   validates :description, presence: true
   validates :difficulty, inclusion: { in: [1, 2, 3, 4, 5] }
   validates :equipment, presence: true
+  validates :max_count, presence: true
 end

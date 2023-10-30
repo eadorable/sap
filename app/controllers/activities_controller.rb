@@ -35,6 +35,8 @@ class ActivitiesController < ApplicationController
     @activity_declined = current_user.bookings.where(status: false).find_by(activity_id: @activity.id)
     @chatroom = @activity.chatroom
     @message = Message.new
+
+    @bookings = @activity.bookings.where(status: true)
   end
 
   def new
@@ -72,7 +74,7 @@ class ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.require(:activity).permit(:name, :address, :date_time, :description, :difficulty, :equipment, :category_id,
+    params.require(:activity).permit(:name, :address, :date_time, :max_count, :description, :difficulty, :equipment, :category_id,
                                     :owner_id, photos: [])
   end
 
