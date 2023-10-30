@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :bookings, only: %i[show index destroy] do
     member do
       get :accept
-      get :decline 
+      get :decline
     end
   end
   get 'dashboard', to: 'pages#dashboard'
