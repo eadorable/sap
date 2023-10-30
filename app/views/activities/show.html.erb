@@ -54,7 +54,7 @@
                 <p>Activity details</p>
               <% end %>
             </div>
-            
+
             <!-- Join Button -->
             <% if @activity_booked %>
               <%= link_to "Chatroom", chatroom_path(@chatroom), class: "btn btn-primary" %>
@@ -97,7 +97,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Message Box -->
   <!-- Display message box to activity owner or activity participants -->
   <% if @activity_booked || current_user == @activity.owner %>
@@ -128,14 +128,6 @@
                   <h5 class="card-title"><strong><%= activity.name %></strong></h5>
                   <p class="card-text"><%= activity.description %></p>
 
-                  <!-- Join Button -->
-                  <% if current_user == activity.owner %>
-                    <%= link_to "Edit", edit_activity_path(activity), class: "btn btn-primary" %>
-                  <% else %>
-                    <%= simple_form_for [activity, Booking.new] do |f| %>
-                      <%= f.submit "Join", class: "btn btn-primary" %>
-                    <% end %>
-                  <% end %>
                 </div>
               </div>
             <% end %> <!-- Close the link here -->
