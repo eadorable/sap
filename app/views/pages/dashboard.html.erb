@@ -1,60 +1,126 @@
-<h1>I am dashboard</h1>
+<h1>Your activity dashboard</h1>
+
 <!--Activities you own-->
-<h3>Activities I own (<%=@my_activities.count %>)</h3>
-<% @my_activities.each do |activity| %>
-<ul>
-  <li><%= "#{activity.name} " %></li>
-    <p class="delete-edit-btn">
-      <%= link_to "Delete", activity_path(activity.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn" %>
-      <%= link_to "Edit", edit_activity_path(activity.id), class: "btn btn-outline-primary link-btn m-1" %>
-    </p>
-</ul>
-<% end %>
+<div class="section">
+  <h2>My organized activities (<%= @my_activities.count %>)</h2>
+  <% @my_activities.each do |activity| %>
+    <%= link_to activity_path(activity) do %>
+      <ul>
+        <li>
+          <h3 class="section-title"><%= activity.name %></h3>
+            <h5><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
+            <h5><%= activity.address %></h5>
+          <div class="option-select-btn">
+            <%= link_to "Delete", activity_path(activity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
+            <%= link_to "Edit", edit_activity_path(activity), class: "btn btn-outline-primary link-btn delete-edit m-1" %>
+          </div>
+        </li>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
 
 <!--Activities you book as participant-->
-<h3>My bookings (<%=@my_bookings.count %>)</h3>
-<% @my_bookings.each do |booking| %>
-<ul>
-  <li><%= "#{booking.activity.name} #{booking.activity.address} #{booking.activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M')}" %>
-    <% if booking.status == nil %>
-      <%= "For review" %>
-    <% elsif booking.status == false %>
-      <%= "Declined" %>
-    <% else %>
-      <%= "Approved" %>
-    <% end %></li>
-    <p class="delete-edit-btn">
-      <%= link_to "Delete", booking_path(booking.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn" %>
-    </p>
-</ul>
-<% end %>
+<div class="section">
+  <h2>My bookings (<%= @my_bookings.count %>)</h2>
+  <% unique_activities = @my_bookings.map(&:activity).uniq %>
+  <% unique_activities.each do |activity| %>
+    <% bookings = @my_bookings.select { |booking| booking.activity == activity } %>
+    <% booking = bookings.first %>
+    <%= link_to booking_path(booking) do %>
+      <ul>
+        <li>
+          <h3 class="section-title"><%= activity.name %></h3>
+          <h5><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %><h5>
+          <h5><%= activity.address %></h5>
+            <h5 class="status-text">Status:
+            <% if booking.status == nil %>
+              <%= "Pending" %>
+            <% elsif booking.status == false %>
+              <%= "Declined" %>
+            <% else %>
+              <%= "Approved" %>
+            <% end %>
+          </h5>
+          <div class="option-select-btn mt-1">
+            <%= link_to "Delete", booking_path(booking.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
+          </div>
+        </li>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
 
-<!--Activities booked by participants that you approved-->
-<h3>Booked by Participants (<%=@participants_booked.count %>)</h3>
-<% @participants_booked.each do |booked| %>
-<ul>
-  <li><%= "#{booked.participant.first_name} #{booked.activity.name} #{booked.activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M')} " %></li>
-</ul>
-<% end %>
-
-<!--Activities waiting for your review-->
-<h3>Pending Bookings (<%=@participants_pending.count %>)</h3>
-<% @participants_pending.each do |pending| %>
-<ul>
-  <li><%= "#{pending.participant.first_name} #{pending.activity.name} #{pending.activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M')} " %></li>
-</ul>
-<% end %>
-<!--Display link to accept and decline page when there's an existing booking request-->
-<% if @participants_pending.empty? %>
-  <p>No booking yet</p>
-<% else %>
-  <p class="btn btn-primary"><%= link_to "Review booking", bookings_path %></p>
-<% end %>
+<!-- Activities booked by participants that you approved -->
+<div class="section">
+  <h2>Booked by Participants</h2>
+  <% grouped_activities = @participants_booked.group_by { |booked| [booked.activity.name, booked.activity.date_time] } %>
+  <% grouped_activities.each do |(activity_name, activity_date_time), bookings| %>
+    <%= link_to activity_path(bookings.first.activity) do %>
+      <ul>
+        <li>
+          <h3 class="section-title"><%= activity_name %></h3>
+          <h5><%= "#{activity_date_time.strftime('%^a, %d %^b, %Y at %H:%M')}" %></h5>
+          <ol>
+            <h4><% unique_participants = bookings.map { |booked| [booked.participant.first_name, booked.participant.last_name] }.uniq %></h4>
+            <h4><% unique_participants.each do |participant| %></h4>
+              <h4><li><%= "#{participant.join(' ')}" %></li></h4>
+            <% end %>
+          </ol>
+        </li>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
 
 <!--Activities requested by participant that you declined-->
-<h3>Declined Bookings (<%=@participants_declined.count %>)</h3>
-<% @participants_declined.each do |declined| %>
-<ul>
-  <li><%= "#{declined.participant.first_name} #{declined.activity.name} #{declined.activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M')} " %></li>
-</ul>
-<% end %>
+<div class="section">
+  <h2>Declined Bookings</h2>
+  <% declined_participants_by_activity = @participants_declined.group_by(&:activity) %>
+  <% declined_participants_by_activity.each do |activity, declined_participants| %>
+    <ul>
+      <li>
+        <h3 class="section-title"><%= activity.name %></h3>
+        <h5><%= "#{activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M')}" %></h5>
+        <ol>
+          <h4><% unique_participants = declined_participants.map { |participant| "#{participant.participant.first_name} #{participant.participant.last_name}" }.uniq %></h4>
+          <h4><% unique_participants.each do |participant_name| %></h4>
+            <h4><li><%= participant_name %></li></h4>
+          <% end %>
+        </ol>
+      </li>
+    </ul>
+  <% end %>
+</div>
+
+<!--Activities waiting for your review-->
+<div class="section">
+  <h2>Pending Bookings</h2>
+  <% @participants_pending.group_by(&:activity).each do |activity, participants| %>
+    <%= link_to activity_path(activity) do %>
+      <div class="pending-item">
+        <ul>
+          <li>
+            <h3 class="section-title"><%= activity.name %></h3>
+            <h5><%= "#{activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M')}" %></h5>
+            <h4>Requested by:</h4>
+            <ol class="participants-list">
+              <h4><% participants.map(&:participant).uniq.each do |participant| %></h4>
+                <h4><li><%= "#{participant.first_name} #{participant.last_name}" %></li></h4>
+              <% end %>
+            </ol>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
+
+  <!--Display link to accept and decline page when there's an existing booking request-->
+  <% if @participants_pending.empty? %>
+    <h4>No booking yet</h4>
+  <% else %>
+  <div class="review-booking-button">
+    <%= link_to "Review booking", bookings_path, class: "btn btn-primary review-button" %>
+  <% end %>
+  </div>
+</div>

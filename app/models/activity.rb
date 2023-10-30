@@ -3,7 +3,7 @@ class Activity < ApplicationRecord
   belongs_to :owner, foreign_key: 'owner_id', class_name: 'User'
   has_many_attached :photos
 
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
   has_one :chatroom, dependent: :destroy
 
   scope :upcoming, -> { find_future_activities }
