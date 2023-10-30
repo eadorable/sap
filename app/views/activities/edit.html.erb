@@ -18,6 +18,7 @@
               <div class="col-md-12"><%= f.input :date_time, as: :string, input_html: { data: { controller: "datepicker" } } %></div>
               <div class="col-md-12"><%= f.input :difficulty, collection: levels, required: true %></div>
               <div class="col-md-12"><%= f.input :equipment, :label => "What to bring" %></div>
+              <div class="col-md-12"><%= f.input :max_count %></div>
               <div class="col-md-12"><%= f.input :description %></div>
               <div class="col-md-12"><%= f.input :photos, as: :file, input_html: { multiple: true } %></div>
               <div class="col-md-12"><%= f.submit "Save", class: "btn btn-primary" %></div>

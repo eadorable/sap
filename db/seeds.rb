@@ -59,7 +59,7 @@ Activity.create!(
   difficulty: rand(1..5),
   equipment: 'Comfortable hiking shoes',
   category: outdoors,
-  max_count: 10,
+  max_count: 2,
   chatroom: Chatroom.new
 )
 Activity.create!(

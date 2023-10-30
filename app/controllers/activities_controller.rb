@@ -35,6 +35,8 @@ class ActivitiesController < ApplicationController
     @activity_declined = current_user.bookings.where(status: false).find_by(activity_id: @activity.id)
     @chatroom = @activity.chatroom
     @message = Message.new
+
+    @bookings = @activity.bookings.where(status: true)
   end
 
   def new
