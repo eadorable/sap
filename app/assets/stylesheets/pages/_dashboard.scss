@@ -1,0 +1,64 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.section {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #8f8e8e; /* Add the border style here */
+}
+
+.link-btn {
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.link-btn:hover {
+  color: #ffffff;
+}
+
+.option-select-btn {
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+.activity-item {
+  margin-bottom: 20px;
+}
+
+.pending-item {
+  margin-bottom: 10px;
+}
+
+.participants-list {
+  margin-bottom: 0;
+}
+
+.review-button {
+  background-color: rgb(56, 56, 232);
+  color: rgb(255, 255, 255) !important;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.review-booking-button {
+  text-align: right;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+.status-text {
+  font-weight: bold;
+}
