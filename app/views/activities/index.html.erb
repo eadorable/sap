@@ -1,30 +1,65 @@
-<%= form_tag(activities_path, method: 'get') do %>
+<div class="accordions--categories mt-3">
+  <button onclick="myFunction('Demo1')" class="btn btn-secondary mb-3">Select a category</button>
+    <div id="Demo1" class="w3-container w3-hide">
+        <% @categories.each do |category| %>
+        <div class="accordions">
+          <%= link_to category.name, activities_path(category_id: category.id) %>
+        </div>
+        <% end %>
+    </div>
+</div>
+<script>
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+<style>
+  .accordions--categories {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    background-color: #f1f1f1;
+    width: 100%;
+     .accordions {
+        border: 2px solid #ddd;
+        width: 100%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 5px;
+        background-color: #f1f1f1;
+        text-align: left;
+        font-size: 16px;
+        font-weight: bold;
+      }
+  }
 
-  <div class="input-group rounded p-3">
-    <%= label_tag %>
-    <%= select_tag 'category_id', options_for_select(@categories.map { |c| [c.name, c.id] }, params[:category_id]), include_blank: 'All categories' %>
-    <%= submit_tag "Filter", class: "btn btn-success" %>
-  </div>
-  <div class="form-group rounded p-2">
-    <%= label_tag %>
-    <%= text_field_tag :query, params[:query], class: "input mb-3", placeholder: "search activities" %>
-    <%= submit_tag 'Search', class: 'btn btn-primary' %>
-  </div>
-<% end %>
+  .accordions--categories button {
+    font-size: 22px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: inherit;
+    color: #000;
+    font-weight: bold;
+  }
 
-    <div class="search--bar">
+</style>
+
+    <div class="search--bar mt-2">
         <%= label_tag %>
         <%= text_field_tag :query, params[:query], class: "input mb-3" ,placeholder: "Search activities" %>
-        <%= submit_tag 'Search', class: 'btn btn-primary search--button' %>
+        <%= submit_tag 'Search', class: 'search--button' %>
     </div>
 
-<div class="bloobers--container">
-  <% @categories_name.each do |category| %>
-    <div class="bloob" style="background-color:<%= category == params[:tag] ? '#7E73FF' : '' %>";>
-      <%= link_to category, activities_path(tag: category)  %>
-    </div>
-  <% end %>
-</div>
+
 <br>
 <div class="container">
   <div class="cards">
