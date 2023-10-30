@@ -33,6 +33,10 @@ export default class extends Controller {
 
        // Create a HTML element for your custom marker
     const customMarker = document.createElement("div");
+    customMarker.style.padding = "10px"
+    customMarker.style.background = "red"
+    customMarker.style.borderRadius = "50%"
+
     customMarker.innerHTML = marker.marker_html;
 
         // Pass the element as an argument to the new marker
