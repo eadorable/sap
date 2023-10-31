@@ -1,1 +1,4 @@
 <h1>I am Chatroom</h1>
+<% @chatrooms.each do |chatroom| %>
+  <h2><%= chatroom.activity.name %></h2>
+<% end %>
