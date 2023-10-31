@@ -45,7 +45,7 @@
     <%= image_tag @activity.owner.profile_image, class: "owner-photo", alt: "Owner's Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
     <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
   <% else %>
-    <!-- You can use a default photo if the owner doesn't have a photo -->
+    <!-- use a default photo if the owner doesn't have a photo -->
     <%= image_tag "bar.png", class: "owner-photo", alt: "Default Owner Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
     <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
   <% end %>
@@ -53,20 +53,22 @@
 
   <!-- Display participant photos and names -->
 <div class="participants-info">
-<strong>Participants:</strong>
-  <% @activity.participants.shuffle.first(5).each do |participant| %>
-    <div class="participant-container">
-      <div class="participant-photo">
-        <% if participant.profile_image.attached? %>
-          <%= image_tag participant.profile_image, class: "participant-image", alt: "Participant's Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
-        <% else %>
-          <!-- You can use a default photo if the participant doesn't have a photo -->
-          <%= image_tag "bar.png", class: "participant-image", alt: "Default Participant Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
-        <% end %>
+  <strong>Participants:</strong>
+  <div class="participant-container-row">
+    <% @activity.participants.shuffle.first(5).each do |participant| %>
+      <div class="participant-container" style="display: inline-block;">
+        <div class="participant-photo">
+          <% if participant.profile_image.attached? %>
+            <%= image_tag participant.profile_image, class: "rounded-circle user-image", alt: "User Profile Image", style: "width: 40px; height: 40px;" %>
+          <% else %>
+            <!-- Use a default photo if the participant doesn't have a photo -->
+            <%= image_tag "Gym.png", class: "participant-image", alt: "Default Participant Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+          <% end %>
+        </div>
+        <h5 class="participant-name" style="display: none;"><%= participant.first_name %></h5>
       </div>
-      <h5 class="participant-name" style="display: none;"><%= participant.first_name %></h5>
-    </div>
-  <% end %> <!-- Make sure to close the loop here -->
+    <% end %> <!-- close the loop here -->
+  </div>
 </div>
 
     </p>
@@ -87,8 +89,6 @@
     <p>Activity details</p>
   <% end %>
 </div>
-
-
 
             <!-- udpated Join Button -->
             <% if @activity_booked %>

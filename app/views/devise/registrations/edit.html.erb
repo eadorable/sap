@@ -10,26 +10,18 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%= f.input :first_name,
-                required: false,
-                input_html: { autocomplete: "first name" } %>
-    <%= f.input :last_name,
-                required: false,
-                input_html: { autocomplete: "last name" } %>
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+    <%= f.input :first_name, required: false, input_html: { autocomplete: "first name" } %>
+    <%= f.input :last_name, required: false, input_html: { autocomplete: "last name" } %>
+    <%= f.input :password, hint: "leave it blank if you don't want to change it", required: false, input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation, required: false, input_html: { autocomplete: "new-password" } %>
+    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true, input_html: { autocomplete: "current-password" } %>
     <%= f.input :profile_image, as: :file, label: "Profile Image" %>
     <!-- Display the current profile image if available -->
-    <%= image_tag(resource.profile_image_url, alt: 'Profile Image', class: 'profile-image') if resource.profile_image.attached? %>
+    <% if resource.profile_image.attached? %>
+      <div class="current-profile-image">
+        <%= image_tag(resource.profile_image, alt: 'Profile Image', class: 'profile-image') %>
+      </div>
+    <% end %>
   </div>
 
   <div class="form-actions">

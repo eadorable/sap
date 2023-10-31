@@ -24,7 +24,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if current_user.profile_image.attached? %>
-                <%= image_tag current_user.profile_image.variant(resize: "40x40").processed, class: "rounded-circle user-image", alt: "User Profile Image" %>
+                  <%= image_tag current_user.profile_image, class: "rounded-circle user-image", alt: "User Profile Image", style: "width: 40px; height: 40px;" %>
               <% else %>
                 <%= image_tag "bar.png", class: "rounded-circle user-image", alt: "Default Image", style: "width: 40px; height: 40px;" %>
               <% end %>
