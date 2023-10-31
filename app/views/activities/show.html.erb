@@ -32,40 +32,63 @@
       </div>
     </div>
 
-    <!-- Description -->
-    <div class="row">
-      <div class="col-12">
-        <div class="card mt-2 m-0 mb-2">
-          <div class="card-body">
-            <!-- Activity Description -->
-            <div class="description-container costum--container">
-              <% if @activity.present? %>
-                <h3 class="my-1 section-title"><%= @activity.name %></h3>
-                <h5><%= @activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
-                <h5>Organizer: <%= @activity.owner.first_name %></h5>
-                <p class="card-text mt-2 mb-2">
-                <strong>Participants:</strong>
-                  <% @activity.participants.shuffle.first(5).each do |participant| %>
-                    <%= participant.first_name %>,
-                  <% end %>
-                </p>
-                <h5><%= @activity.description %></h5>
-                <h5>Difficulty:
-                  <% difficulty = @activity.difficulty %>
-                  <% max_difficulty = 5 %>
-                  <% (1..max_difficulty).each do |i| %>
-                    <% if i <= difficulty %>
-                      <i class="fa-solid fa-circle"></i>
-                    <% else %>
-                      <i class="fa-regular fa-circle"></i>
-                    <% end %>
-                  <% end %>
-                </h5>
-                <h5>What to bring: <%= @activity.equipment %></h5>
-              <% else %>
-                <p>Activity details</p>
-              <% end %>
-            </div>
+  <!-- Activity Description -->
+<div class="description-container costum--container">
+  <% if @activity.present? %>
+    <h3 class="my-1 section-title"><%= @activity.name %></h3>
+    <h5><%= @activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
+
+<!-- Display the owner's photo and name -->
+<div class="owner-info">
+<strong>Owner:</strong>
+  <% if @activity.owner.profile_image.attached? %>
+    <%= image_tag @activity.owner.profile_image, class: "owner-photo", alt: "Owner's Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+    <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
+  <% else %>
+    <!-- You can use a default photo if the owner doesn't have a photo -->
+    <%= image_tag "bar.png", class: "owner-photo", alt: "Default Owner Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+    <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
+  <% end %>
+</div>
+
+  <!-- Display participant photos and names -->
+<div class="participants-info">
+<strong>Participants:</strong>
+  <% @activity.participants.shuffle.first(5).each do |participant| %>
+    <div class="participant-container">
+      <div class="participant-photo">
+        <% if participant.profile_image.attached? %>
+          <%= image_tag participant.profile_image, class: "participant-image", alt: "Participant's Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+        <% else %>
+          <!-- You can use a default photo if the participant doesn't have a photo -->
+          <%= image_tag "bar.png", class: "participant-image", alt: "Default Participant Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+        <% end %>
+      </div>
+      <h5 class="participant-name" style="display: none;"><%= participant.first_name %></h5>
+    </div>
+  <% end %> <!-- Make sure to close the loop here -->
+</div>
+
+    </p>
+    <h5><%= @activity.description %></h5>
+    <h5>Difficulty:
+      <% difficulty = @activity.difficulty %>
+      <% max_difficulty = 5 %>
+      <% (1..max_difficulty).each do |i| %>
+        <% if i <= difficulty %>
+          <i class="fa-solid fa-circle"></i>
+        <% else %>
+          <i class="fa-regular fa-circle"></i>
+        <% end %>
+      <% end %>
+    </h5>
+    <h5>What to bring: <%= @activity.equipment %></h5>
+  <% else %>
+    <p>Activity details</p>
+  <% end %>
+</div>
+
+
 
             <!-- udpated Join Button -->
             <% if @activity_booked %>
@@ -78,7 +101,7 @@
               <%= link_to "Cancel", booking_path(@activity_pending), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
             <% elsif @activity_declined %>
               <h5 class="status-text">Declined</h5>
-            <% elsif @bookings.count >= @activity.max_count %>
+            <% elsif @bookings.present? && @activity.max_count.present? && @bookings.count >= @activity.max_count %>
               <h5 class="status-text">Sorry, we are fully booked</h5>
             <% else  %>
               <%= simple_form_for [@activity, @booking] do |f| %>

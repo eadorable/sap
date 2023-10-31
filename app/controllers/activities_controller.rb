@@ -22,20 +22,15 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
-    # @activity_coordinates = [@activity.latitude, @activity.longitude]
     @markers = geocoded_activity_markers(@activity)
     @booking = Booking.new
-
     # Fetch additional activities for display. It will only display 3 activities
-    # @activities = Activity.where.not(id: @activity.id).limit(3)
     @activities = Activity.where.not(id: @activity.id).order("RANDOM()").limit(3)
-
     @activity_booked = current_user.bookings.where(status: true).find_by(activity_id: @activity.id)
     @activity_pending = current_user.bookings.where(status: nil).find_by(activity_id: @activity.id)
     @activity_declined = current_user.bookings.where(status: false).find_by(activity_id: @activity.id)
     @chatroom = @activity.chatroom
     @message = Message.new
-
     @bookings = @activity.bookings.where(status: true)
   end
 

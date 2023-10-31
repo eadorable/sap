@@ -12,3 +12,45 @@
 .carousel-image {
   overflow: hidden;
 }
+
+  .owner-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .owner-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Creates rounded corners */
+    cursor: pointer;
+  }
+
+  .owner-name {
+    display: none;
+  }
+
+  .owner-info:hover .owner-name {
+    display: block;
+  }
+
+
+  .participant-container {
+    display: inline-block;
+    margin-right: 10px; /* Adjust the spacing between participants */
+  }
+
+  .participant-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .participant-name {
+    display: none;
+  }
+
+  .participant-image:hover + .participant-name {
+    display: inline; /* Show the name when hovering over the image */
+  }
+
