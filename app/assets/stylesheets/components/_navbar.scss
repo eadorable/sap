@@ -20,3 +20,27 @@
   top: 0;
   z-index: 99;
 }
+
+.nav-item-user {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-menu.dropdown-menu-left {
+  left: 0;
+  right: auto;
+  max-width: 200px; /* Adjust the max-width to your preference */
+}
+
+.user-image {
+  margin-right: 10px; /* Adjust spacing as needed */
+}
+
+.user-name {
+  display: none; /* Hide the name by default */
+}
+
+.nav-item-user:hover .user-name {
+  display: block; /* Show the name on hover */
+}

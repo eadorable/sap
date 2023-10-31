@@ -10,6 +10,12 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+    <%= f.input :first_name,
+                required: false,
+                input_html: { autocomplete: "first name" } %>
+    <%= f.input :last_name,
+                required: false,
+                input_html: { autocomplete: "last name" } %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
@@ -21,11 +27,15 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+    <%= f.input :profile_image, as: :file, label: "Profile Image" %>
+    <!-- Display the current profile image if available -->
+    <%= image_tag(resource.profile_image_url, alt: 'Profile Image', class: 'profile-image') if resource.profile_image.attached? %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, "Update" %>
   </div>
+</div>
 <% end %>
 
 <h3>Cancel my account</h3>
