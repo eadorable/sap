@@ -95,7 +95,7 @@
 
 <!--Activities waiting for your review-->
 <div class="section">
-  <h2>Pending Bookings</h2>
+  <h2>Pending Bookings (<%=@participants_pending.count %>)</h2>
   <% @participants_pending.group_by(&:activity).each do |activity, participants| %>
     <%= link_to activity_path(activity) do %>
       <div class="pending-item">
