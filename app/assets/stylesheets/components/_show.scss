@@ -33,9 +33,12 @@
     display: block;
   }
 
+  .participants-info {
+    display: flex; /* Display participants in a row */
+    align-items: center; /* Align participants vertically in the middle */
+  }
 
   .participant-container {
-    display: inline-block;
     margin-right: 10px; /* Adjust the spacing between participants */
   }
 
@@ -53,4 +56,3 @@
   .participant-image:hover + .participant-name {
     display: inline; /* Show the name when hovering over the image */
   }
-
