@@ -13,5 +13,7 @@ class PagesController < ApplicationController
     @participants_booked = Booking.joins(activity: :owner).where(activities: { owner: current_user }, bookings: { status: true })
     @participants_pending = Booking.joins(activity: :owner).where(activities: { owner: current_user }, bookings: { status: nil })
     @participants_declined = Booking.joins(activity: :owner).where(activities: { owner: current_user }, bookings: { status: false })
+
+    @my_activities_bookings = Booking.joins(activity: :owner).where(activities: { owner: current_user }).pluck(:id)
   end
 end

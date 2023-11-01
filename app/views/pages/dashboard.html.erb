@@ -1,59 +1,55 @@
-<h1>Your activity dashboard</h1>
-
+<h1 class="h1-dashboard"><i class="fa-solid fa-person-walking" style="color: #b9f2df;"></i></h1>
 <!--Activities you own-->
-<div class="section">
-  <h2>My organized activities (<%= @my_activities.count %>)</h2>
-  <% @my_activities.each do |activity| %>
-    <%= link_to activity_path(activity) do %>
-      <ul>
-        <li>
-          <h3 class="section-title"><%= activity.name %></h3>
-            <h5><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
-            <h5><%= activity.address %></h5>
-          <div class="option-select-btn">
-            <%= link_to "Delete", activity_path(activity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
-            <%= link_to "Edit", edit_activity_path(activity), class: "btn btn-outline-primary link-btn delete-edit m-1" %>
-          </div>
-        </li>
-      </ul>
-    <% end %>
+<% activity_count = @my_activities.count %>
+<h2><%= activity_count > 1 ? "My activities" : "My activity" %> (<%= activity_count %>)</h2>
+<% @my_activities.each do |activity| %>
+  <%= link_to activity_path(activity) do %>
+    <div class="card-product">
+      <%= image_tag "bar.png", class: "carousel-image", alt: "Default Activity Photo" %>
+      <div class="card-product-infos">
+        <h2><%= activity.name %></h2>
+        <p><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></p>
+        <p><%= activity.address %></p>
+        <div>
+          <%= link_to "Delete", activity_path(activity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
+          <%= link_to "Edit", edit_activity_path(activity), class: "btn btn-outline-primary link-btn delete-edit m-1" %>
+        </div>
+      </div>
+    </div>
   <% end %>
-</div>
+<% end %>
 
 <!--Activities you book as participant-->
-<div class="section">
-  <h2>My bookings (<%= @my_bookings.count %>)</h2>
-  <% unique_activities = @my_bookings.map(&:activity).uniq %>
-  <% unique_activities.each do |activity| %>
-    <% bookings = @my_bookings.select { |booking| booking.activity == activity } %>
-    <% booking = bookings.first %>
-    <%= link_to booking_path(booking) do %>
-      <ul>
-        <li>
-          <h3 class="section-title"><%= activity.name %></h3>
-          <h5><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %><h5>
-          <h5><%= activity.address %></h5>
-            <h5 class="status-text">Status:
-            <% if booking.status == nil %>
-              <%= "Pending" %>
-            <% elsif booking.status == false %>
-              <%= "Declined" %>
-            <% else %>
-              <%= "Approved" %>
-            <% end %>
-          </h5>
-          <div class="option-select-btn mt-1">
-            <%= link_to "Delete", booking_path(booking.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
-          </div>
-        </li>
-      </ul>
-    <% end %>
+<% booking_count = @my_bookings.count %>
+<h2><%= booking_count > 1 ? "My bookings" : "My booking" %> (<%= booking_count %>)</h2>
+<% @my_bookings.each do |booking| %>
+  <%= link_to activity_path(booking.activity_id) do %>
+    <div class="card-product">
+      <%= image_tag "bar.png", class: "carousel-image", alt: "Default Activity Photo" %>
+      <div class="card-product-infos">
+        <h2><%= booking.activity.name %></h2>
+        <p><%= booking.activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></p>
+        <p><%= booking.activity.address %></p>
+        <% if booking.status == nil %>
+          <strong><%= "Waiting for approval" %></strong>
+        <% elsif booking.status == false %>
+          <strong><%= "Declined" %></strong>
+        <% else %>
+          <strong><%= "Approved" %></strong>
+        <% end %>
+        <div>
+          <%= link_to "Cancel", activity_path(booking.activity_id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
+        </div>
+      </div>
+    </div>
   <% end %>
-</div>
+<% end %>
+
 
 <!-- Activities booked by participants that you approved -->
 <div class="section">
-  <h2>Booked by Participants</h2>
+  <% booked_count = @participants_booked.count %>
+<h2><%= booked_count > 1 ? "Booked by participants" : "Booked by participant" %> (<%= booked_count %>)</h2>
   <% grouped_activities = @participants_booked.group_by { |booked| [booked.activity.name, booked.activity.date_time] } %>
   <% grouped_activities.each do |(activity_name, activity_date_time), bookings| %>
     <%= link_to activity_path(bookings.first.activity) do %>
