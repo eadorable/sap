@@ -4,9 +4,11 @@
 }
 
 .carousel-item .carousel-image {
-  height: 450px; /* Adjust the height as needed */
+  height: 250px; /* Adjust the height as needed */
   width: 100%;
   object-fit: cover;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .carousel-image {
@@ -55,4 +57,32 @@
 
   .participant-image:hover + .participant-name {
     display: inline; /* Show the name when hovering over the image */
+  }
+
+  .activity-card {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 2px;
+  }
+
+  .card-img-top {
+    height: 200px; /* Adjust the height as needed */
+    width: 100%;
+    object-fit: cover;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .join-button {
+    border-radius: 5px;
+    font-size: 20px;
+  }
+
+  .join-button:hover {
+    color: #ffffff;
+  }
+
+  .activity-card {
+    padding: 5px;
+    margin-bottom: 2px;
   }
