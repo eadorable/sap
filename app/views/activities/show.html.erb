@@ -1,94 +1,93 @@
-<div class="container">
-  <div class="row justify-content-center mt-1">
-    <!-- Activity Image Carousel -->
-    <div class="col-12">
-      <div id="activityImageCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <!-- Check if there are any photos; if not, display the default image -->
-          <% if @activity.photos.present? %>
-            <% @activity.photos.each_with_index do |photo, index| %>
-              <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                <!-- Display activity image using Cloudinary's 'cl_image_tag' helper -->
-                <%= cl_image_tag photo.key, class: "carousel-image" %>
-              </div>
-            <% end %>
-          <% else %>
-            <!-- Use the default photo when no photos are available -->
-            <div class="carousel-item active">
-              <%= image_tag "bar.png", class: "carousel-image", alt: "Default Activity Photo" %>
-            </div>
-          <% end %>
+<!-- Activity Image Carousel -->
+<div class="col-12">
+  <div id="activityImageCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <!-- Check if there are any photos; if not, display the default image -->
+      <% if @activity.photos.present? %>
+        <% @activity.photos.each_with_index do |photo, index| %>
+          <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+            <!-- Display activity image using Cloudinary's 'cl_image_tag' helper -->
+            <%= cl_image_tag photo.key, class: "carousel-image" %>
+          </div>
+        <% end %>
+      <% else %>
+        <!-- Use the default photo when no photos are available -->
+        <div class="carousel-item active">
+          <%= image_tag "bar.png", class: "carousel-image", alt: "Default Activity Photo" %>
         </div>
-
-        <!-- Carousel navigation buttons (Previous and Next) -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#activityImageCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#activityImageCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" ariahidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+      <% end %>
     </div>
 
-  <!-- Activity Description -->
-<div class="description-container costum--container">
-  <% if @activity.present? %>
-    <h3 class="my-1 section-title"><%= @activity.name %></h3>
-    <h5><%= @activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
-
-<!-- Display the owner's photo and name -->
-<div class="owner-info">
-<strong>Owner:</strong>
-  <% if @activity.owner.profile_image.attached? %>
-    <%= image_tag @activity.owner.profile_image, class: "owner-photo", alt: "Owner's Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
-    <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
-  <% else %>
-    <!-- use a default photo if the owner doesn't have a photo -->
-    <%= image_tag "bar.png", class: "owner-photo", alt: "Default Owner Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
-    <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
-  <% end %>
-</div>
-
-  <!-- Display participant photos and names -->
-<div class="participants-info">
-  <strong>Participants:</strong>
-  <div class="participant-container-row">
-    <% @activity.participants.shuffle.first(5).each do |participant| %>
-      <div class="participant-container" style="display: inline-block;">
-        <div class="participant-photo">
-          <% if participant.profile_image.attached? %>
-            <%= image_tag participant.profile_image, class: "rounded-circle user-image", alt: "User Profile Image", style: "width: 40px; height: 40px;" %>
-          <% else %>
-            <!-- Use a default photo if the participant doesn't have a photo -->
-            <%= image_tag "Gym.png", class: "participant-image", alt: "Default Participant Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
-          <% end %>
-        </div>
-        <h5 class="participant-name" style="display: none;"><%= participant.first_name %></h5>
-      </div>
-    <% end %> <!-- close the loop here -->
+    <!-- Carousel navigation buttons (Previous and Next) -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#activityImageCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#activityImageCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" ariahidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 </div>
 
-    </p>
-    <h5><%= @activity.description %></h5>
-    <h5>Difficulty:
-      <% difficulty = @activity.difficulty %>
-      <% max_difficulty = 5 %>
-      <% (1..max_difficulty).each do |i| %>
-        <% if i <= difficulty %>
-          <i class="fa-solid fa-circle"></i>
+<div class="row justify-content-center mt-1">
+  <div class="col-12 col-md-8 mb-0 row">
+    <!-- Activity Description -->
+    <div class="description-container">
+      <% if @activity.present? %>
+        <h3 class="my-1 mt-2 section-title"><%= @activity.name %></h3>
+        <h5><%= @activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
+
+        <!-- Display the owner's photo and name -->
+        <div class="owner-info">
+        <strong>Owner:</strong>
+          <% if @activity.owner.profile_image.attached? %>
+            <%= image_tag @activity.owner.profile_image, class: "owner-photo", alt: "Owner's Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+            <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
+          <% else %>
+            <!-- use a default photo if the owner doesn't have a photo -->
+            <%= image_tag "bar.png", class: "owner-photo", alt: "Default Owner Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+            <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
+          <% end %>
+        </div>
+
+        <!-- Display participant photos and names -->
+        <div class="participants-info">
+          <strong>Participants:</strong>
+          <div class="participant-container-row">
+            <% @activity.participants.shuffle.first(5).each do |participant| %>
+              <div class="participant-container" style="display: inline-block;">
+                <div class="participant-photo">
+                  <% if participant.profile_image.attached? %>
+                    <%= image_tag participant.profile_image, class: "rounded-circle user-image", alt: "User Profile Image", style: "width: 40px; height: 40px;" %>
+                  <% else %>
+                    <!-- Use a default photo if the participant doesn't have a photo -->
+                    <%= image_tag "Gym.png", class: "participant-image", alt: "Default Participant Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+                  <% end %>
+                </div>
+                <h5 class="participant-name" style="display: none;"><%= participant.first_name %></h5>
+              </div>
+            <% end %> <!-- close the loop here -->
+          </div>
+        </div>
+
+        <h5><%= @activity.description %></h5>
+        <h5>Difficulty:
+          <% difficulty = @activity.difficulty %>
+          <% max_difficulty = 5 %>
+          <% (1..max_difficulty).each do |i| %>
+            <% if i <= difficulty %>
+              <i class="fa-solid fa-circle"></i>
+            <% else %>
+              <i class="fa-regular fa-circle"></i>
+            <% end %>
+          <% end %>
+        </h5>
+        <h5>What to bring: <%= @activity.equipment %></h5>
         <% else %>
-          <i class="fa-regular fa-circle"></i>
+          <p>Activity details</p>
         <% end %>
-      <% end %>
-    </h5>
-    <h5>What to bring: <%= @activity.equipment %></h5>
-  <% else %>
-    <p>Activity details</p>
-  <% end %>
-</div>
+      </div>
 
             <!-- udpated Join Button -->
             <% if @activity_booked %>
@@ -105,19 +104,14 @@
               <h5 class="status-text">Sorry, we are fully booked</h5>
             <% else  %>
               <%= simple_form_for [@activity, @booking] do |f| %>
-                <%= f.submit "Join", class: "btn btn-primary" %>
+                <%= f.submit "Join", class: "btn btn-primary join-button" %>
               <% end %>
             <% end %>
           </div>
+          <!-- Full Address -->
+          <h5 class="mt-4 mb-1"><%= @activity.address %></h5>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Full Address -->
-  <div class="row my-0 mb-0">
-    <div class="col-12">
-      <h5><%= @activity.address %></h5>
     </div>
   </div>
 
@@ -135,14 +129,14 @@
 
 <!-- Display additional activities -->
 <div class="container">
-  <div class="row justify-content-center mt-4">
+  <div class="justify-content-center mt-5">
     <div class="col-12">
       <h3>Similar Activities</h3>
       <div class="row">
-        <% @activities.each do |activity| %>
-          <div class="col-12 col-md-4 mb-4">
+        <% @activities.where(category: @activity.category).where.not(id: @activity.id).each do |activity| %>
+          <div class="col-12 col-md-4 mb-2 mt-0">
             <%= link_to activity_path(activity) do %> <!-- Wrap the entire card content in a link -->
-              <div class="card">
+              <div class="activity-card mb-0">
                 <div class="card-body">
                   <!-- Activity Image -->
                   <% if activity.photos.present? %>
@@ -153,9 +147,11 @@
                   <% end %>
 
                   <!-- Activity Details -->
-                  <h5 class="card-title"><strong><%= activity.name %></strong></h5>
-                  <p class="card-text"><%= activity.description %></p>
-
+                  <div class="m-2">
+                  <h4 class="card-title"><strong><%= activity.name %></strong></h4>
+                  <h5><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
+                  <p><%= activity.address %></p>
+                  </div>
                 </div>
               </div>
             <% end %> <!-- Close the link here -->
