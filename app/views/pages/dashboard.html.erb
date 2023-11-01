@@ -1,5 +1,6 @@
 
 <h1 class="h1-dashboard"><i class="fa-solid fa-person-walking" style="color: #b9f2df;"></i></h1>
+
 <!--Activities you own-->
 <% activity_count = @my_activities.count %>
 <h2><%= activity_count > 1 ? "My activities" : "My activity" %> (<%= activity_count %>)</h2>
@@ -17,8 +18,13 @@
         <p><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></p>
         <p><%= activity.address %></p>
         <div>
-          <%= link_to "Delete", activity_path(activity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
-          <%= link_to "Edit", edit_activity_path(activity), class: "btn btn-outline-primary link-btn delete-edit m-1" %>
+          <%= link_to activity_path(activity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn" do %>
+            <i class="fa-solid fa-delete-left"></i>
+          <% end %>
+
+          <%= link_to edit_activity_path(activity), class: "btn" do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+          <% end %>
         </div>
       </div>
     </div>
