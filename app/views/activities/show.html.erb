@@ -17,7 +17,6 @@
         </div>
       <% end %>
     </div>
-  </div>
 
     <!-- Carousel navigation buttons (Previous and Next) -->
     <button class="carousel-control-prev" type="button" data-bs-target="#activityImageCarousel" data-bs-slide="prev">
@@ -113,6 +112,8 @@
           <h5 class="mt-4 mb-1"><%= @activity.address %></h5>
         </div>
       </div>
+    </div>
+  </div>
 
   <!-- Map -->
   <div class="row my-0 mt-0">
@@ -156,29 +157,7 @@
             <% end %> <!-- Close the link here -->
           </div>
         <% end %>
-      </h5>
-      <h5>What to bring: <%= @activity.equipment %></h5>
-    <% else %>
-      <p>Activity details</p>
-    <% end %>
+      </div>
+    </div>
   </div>
-
-  <!-- Updated Join Button -->
-  <% if @activity_booked %>
-    <%= link_to "Chatroom", chatroom_path(@chatroom), class: "btn btn-primary" %>
-    <%= link_to "Leave", booking_path(@activity_booked), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
-  <% elsif current_user == @activity.owner %>
-    <%= link_to "Chatroom", chatroom_path(@chatroom), class: "btn btn-primary" %>
-  <% elsif @activity_pending %>
-    <h5 class="status-text">Waiting for approval</h5>
-    <%= link_to "Cancel", booking_path(@activity_pending), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
-  <% elsif @activity_declined %>
-    <h5 class="status-text">Declined</h5>
-  <% elsif @bookings.present? && @activity.max_count.present? && @bookings.count >= @activity.max_count %>
-    <h5 class="status-text">Sorry, we are fully booked</h5>
-  <% else  %>
-    <%= simple_form_for [@activity, @booking] do |f| %>
-      <%= f.submit "Join", class: "btn btn-primary" %>
-    <% end %>
-  <% end %>
 </div>

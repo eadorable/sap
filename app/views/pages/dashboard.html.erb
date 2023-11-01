@@ -1,3 +1,4 @@
+
 <h1 class="h1-dashboard"><i class="fa-solid fa-person-walking" style="color: #b9f2df;"></i></h1>
 <!--Activities you own-->
 <% activity_count = @my_activities.count %>
@@ -5,7 +6,12 @@
 <% @my_activities.each do |activity| %>
   <%= link_to activity_path(activity) do %>
     <div class="card-product">
-      <%= image_tag "bar.png", class: "carousel-image", alt: "Default Activity Photo" %>
+      <% if activity.photos.present? %>
+        <%= cl_image_tag activity.photos.first.key, class: "carousel-image", alt: "Activity Photo" %>
+      <% else %>
+        <!-- Use the default photo when no photos are available -->
+        <%= image_tag "bar.png", class: "carousel-image", alt: "Default Activity Photo" %>
+      <% end %>
       <div class="card-product-infos">
         <h2><%= activity.name %></h2>
         <p><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></p>
