@@ -24,8 +24,7 @@ class BookingsController < ApplicationController
 
   def create
     @activity = Activity.find(params[:activity_id])
-
-    @booking = Booking.new(activity: @activity, participant: current_user)
+    @booking = Booking.new(activity: @activity, participant: current_user, status: nil)
     if @booking.save!
       redirect_to dashboard_path
     else
