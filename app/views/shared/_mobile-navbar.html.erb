@@ -1,17 +1,38 @@
 <div class="mobile-nav">
   <div class="item">
-    <%=  link_to activities_path do %>
+    <div class="home-icon">
+      <%=  link_to activities_path do %>
           <i class="fa-solid fa-house" style="color: #1f5120;"></i>
+          <p class="icon-text1" style="color: #1f5120;">Home</p>
         <% end %>
-          <%= link_to chatrooms_path do %>
+    </div>
+          <div class="messages-icon">
+            <%= link_to chatrooms_path do %>
               <i class="fa-solid fa-message" style="color: #1f5120;"></i>
+              <p class="icon-text2" style="color: #1f5120;">Messages</p>
           <% end %>
+          </div>
 
-        <%= link_to dashboard_path do  %>
+          <div class="create-activity-icon">
+            <%= link_to new_activity_path do %>
+            <i class="fa-solid fa-square-plus" style="color: #1f5120"></i>
+            <p class="icon-text3" style="color: #1f5120;" >Create</p>
+            <% end %>
+          </div>
+
+        <div class="my-activity-icon">
+          <%= link_to dashboard_path do  %>
           <i class="fa-solid fa-calendar-days" style="color: #1f5120;"></i>
+          <p class="icon-text4" style="color: #1f5120;">My Activity</p>
         <% end %>
-      <%= link_to  edit_user_registration_path do  %>
-    <i class="fa-solid fa-user" style="color: #1f5120;"></i>
+        </div>
+
+        <div class="my-profile-icon">
+          <%= link_to  edit_user_registration_path do  %>
+          <i class="fa-solid fa-user" style="color: #1f5120;"></i>
+          <p class="icon-text5" style="color: #1f5120;">My Profile</p>
     <% end %>
+        </div>
+
   </div>
 </div>
