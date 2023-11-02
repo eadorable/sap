@@ -28,3 +28,21 @@
     }
   }
 }
+
+.chatroom--section {
+  border: 1px solid black;
+  display: flex;
+  flex-direction:column;
+  justify-content: left;
+    ul {
+      list-style: none;
+      li {
+        border: 1px solid black;
+        background-attachment: fixed;
+        background-color: white;
+        color: grey;
+        margin: 5px;
+        padding: 5px;
+      }
+    }
+}

@@ -1,4 +1,13 @@
-<h1>I am Chatroom</h1>
-<% @chatrooms.each do |chatroom| %>
-  <h2><%= chatroom.activity.name %></h2>
+<h2>I am Chatroom</h2>
+<div class="chatroom--section">
+  <% @chatrooms.each do |chatroom| %>
+    <%= link_to chatroom_path(chatroom) do %>
+    <ul>
+      <li>
+        <h3><%= chatroom.activity.name %></h3>
+        <p><%= chatroom.activity.address %></p>
+      </li>
+    </ul>
+    <% end %>
 <% end %>
+</div>
