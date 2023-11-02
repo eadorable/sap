@@ -14,43 +14,28 @@
 <%= form_tag(activities_path, method: 'get') do %>
     <div class="search--bar mt-2">
         <%= label_tag %>
-        <%= text_field_tag :query, params[:query], class: "input mb-3" ,placeholder: "Search activities" %>
+        <%= text_field_tag :query, params[:query], class: "input mb-3", placeholder: "Search activities" %>
         <%= submit_tag 'Search', class: 'search--button' %>
     </div>
 <% end %>
 
 <!-- Cards -->
-<div class="container">
-  <div class="cards">
-    <% @activities.each do |activity| %>
-      <%= link_to activity_path(activity) do %>
-        <div class="custom--card mt-2">
-          <p class="text-center"><%= activity.name %></p>
-          <div class="m-4">
-            <% if activity.photos.present? %>
-              <%= cl_image_tag activity.photos.first.key, class: "carousel-image", alt: "Activity Photo" %>
-            <% else %>
-              <!-- Use the default photo when no photos are available -->
-              <%= image_tag "bar.png", class: "carousel-image", alt: "Default Activity Photo" %>
-            <% end %>
-            <p>Address: <%= activity.address %></p>
-            <p>Equipment: <%= activity.equipment %></p>
-            <p>activity creator:<%= activity.owner.first_name %></p>
-            <p>Date & time: <%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></p>
-            <p>Difficulty:
-              <% difficulty = activity.difficulty %>
-              <% max_difficulty = 5 %>
-              <% (1..max_difficulty).each do |i| %>
-                <% if i <= difficulty %>
-                  <i class="fa-solid fa-circle"></i>
-                <% else %>
-                  <i class="fa-regular fa-circle"></i>
-                <% end %>
-              <% end %>
-            </p>
-          </div>
+<div class="col-12">
+  <% @activities.each do |activity| %>
+    <%= link_to activity_path(activity) do %>
+      <div class="custom--card">
+        <% if activity.photos.present? %>
+          <%= cl_image_tag activity.photos.first.key, alt: "Activity Photo" %>
+        <% else %>
+          <!-- Use the default photo when no photos are available -->
+          <%= image_tag "bar.png", alt: "Default Activity Photo" %>
+        <% end %>
+        <div class="pb-2 px-2">
+          <h3 class="my-1 mt-2 section-title"><%= activity.name %></h3>
+          <h5 class="pb-0"><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
+          <h6><%= activity.address %></h6>
         </div>
-      <% end %>
+      </div>
     <% end %>
-  </div>
+  <% end %>
 </div>
