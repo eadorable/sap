@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12 col-lg-12 owner-card">
+    <!-- Owner's card -->
+    <div class="card-product mt-3">
+      <img src="<%= @activity.owner.profile_image.attached? ? url_for(@activity.owner.profile_image) : 'https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg' %>" />
+      <div class="card-product-infos">
+        <h2><%= @activity.owner.first_name %></h2>
+        <p>Event Host</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Participants' cards (in separate columns) -->
+<div class="participants-info">
+  <% accepted_participants = @activity.participants.select { |participant| participant.bookings.exists?(status: true) } %>
+  <div class="row participants-column">
+    <% accepted_participants.shuffle.first(5).each do |participant| %>
+      <div class="col-md-12 col-lg-12">
+        <div class="card-product participant-card">
+          <img src="<%= participant.profile_image.attached? ? url_for(participant.profile_image) : 'https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg' %>" />
+          <div class="card-product-infos">
+            <h2><%= participant.first_name %></h2>
+            <p>Participant</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
