@@ -31,9 +31,9 @@
           <%= image_tag "bar.png", alt: "Default Activity Photo" %>
         <% end %>
         <div class="pb-2 px-2">
-          <h3 class="my-1 mt-2 section-title"><%= activity.name %></h3>
-          <h5 class="pb-0"><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
-          <h6><%= activity.address %></h6>
+          <h4 class="my-1 mt-2 mb-0 section-title"><%= activity.name %></h4>
+          <h5 class="pb-0 mt-1"><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
+          <h6 class="mt-1"><%= activity.address %></h6>
         </div>
       </div>
     <% end %>

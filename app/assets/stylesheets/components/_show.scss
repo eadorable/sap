@@ -1,4 +1,18 @@
-.description-container,
+.description-container {
+  width: 100%;
+  background-color: white;
+}
+
+.activity-details {
+  background-color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+  margin: 0;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
 .message-box-container {
   width: 100%;
 }
@@ -7,82 +21,98 @@
   height: 250px; /* Adjust the height as needed */
   width: 100%;
   object-fit: cover;
-  margin-left: 0;
-  margin-right: 0;
+  margin: 0;
 }
 
 .carousel-image {
   overflow: hidden;
 }
 
-  .owner-info {
-    display: flex;
-    align-items: center;
-  }
+.owner-info {
+  display: flex;
+  align-items: center;
+}
 
-  .owner-photo {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%; /* Creates rounded corners */
-    cursor: pointer;
-  }
+.owner-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Creates rounded corners */
+  cursor: pointer;
+}
 
-  .owner-name {
-    display: none;
-  }
+.owner-name {
+  display: none;
+}
 
-  .owner-info:hover .owner-name {
-    display: block;
-  }
+.owner-info:hover .owner-name {
+  display: block;
+}
 
-  .participants-info {
-    display: flex; /* Display participants in a row */
-    align-items: center; /* Align participants vertically in the middle */
-  }
+.participants-info {
+  display: flex; /* Display participants in a row */
+  align-items: center; /* Align participants vertically in the middle */
+}
 
-  .participant-container {
-    margin-right: 10px; /* Adjust the spacing between participants */
-  }
+.participant-container {
+  margin-right: 10px; /* Adjust the spacing between participants */
+}
 
-  .participant-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
+.participant-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
 
-  .participant-name {
-    display: none;
-  }
+.participant-name {
+  display: none;
+}
 
-  .participant-image:hover + .participant-name {
-    display: inline; /* Show the name when hovering over the image */
-  }
+.participant-image:hover + .participant-name {
+  display: inline; /* Show the name when hovering over the image */
+}
 
-  .activity-card {
-    border: 1px solid #ccc;
-    padding: 5px;
-    margin-bottom: 2px;
-  }
+.activity-card {
+  border: 1px solid #ccc;
+  background-color: white;
+  padding: 0px;
+  margin: 0;
 
-  .card-img-top {
-    height: 200px; /* Adjust the height as needed */
+  img {
+    height: 150px;
     width: 100%;
     object-fit: cover;
-    margin-left: 0;
-    margin-right: 0;
-  }
+    margin: 0;
+    }
+}
 
-  .join-button {
-    border-radius: 5px;
-    font-size: 20px;
-  }
+.card-img-top {
+  height: 200px; /* Adjust the height as needed */
+  width: 100%;
+  object-fit: cover;
+  margin: 0;
+  min-width: 80px;
+}
 
-  .join-button:hover {
+.link-btn {
+  border-radius: 10px;
+  padding: 5px 15px;
+  font-size: 20px;
+  text-align: center;
+  max-width: 100px;
+  margin-right: 5px;
+
+.link-btn:hover {
     color: #ffffff;
   }
+}
 
-  .activity-card {
-    padding: 5px;
-    margin-bottom: 2px;
-  }
+.btn-container {
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+.status-text {
+  font-weight: 600;
+  color: #515151;
+}
