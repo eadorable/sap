@@ -31,7 +31,7 @@
 .card-product .card-product-infos {
   padding: 16px;
   flex: 1;
-  
+
 }
 
 .h1-dashboard {
@@ -39,6 +39,20 @@
   margin-bottom: 16px;
   text-align: center;
 }
+
+.btn--delete {
+ color:white;
+  border: solid 1px red;
+  background-color:red
+}
+
+.btn--edit {
+  color: white;
+  border: solid 1px blue;
+  background-color: blue;
+}
+
+
 
 
 ul {

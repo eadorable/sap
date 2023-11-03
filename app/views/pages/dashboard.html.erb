@@ -2,11 +2,10 @@
 <h1 class="h1-dashboard"><i class="fa-solid fa-person-walking" style="color: #b9f2df;"></i></h1>
 
 <!--Activities you own-->
-<div data-controller="my-activity-dashboard">
+<div class="row justify-content-center m-2" data-controller="my-activity-dashboard">
   <% activity_count = @my_activities.count %>
-  <h2 data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary mb-3"><%= activity_count > 1 ? "My activities" : "My activity" %> (<%= activity_count %>) <i class="fa-solid fa-square-caret-down"></i></h2>
-
-  <div class="d-none" data-my-activity-dashboard-target="dropdown" >
+  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= activity_count > 1 ? "My activities" : "My activity" %> (<%= activity_count %>) <i class="fa-solid fa-square-caret-down"></i></button>
+  <div class="d-none activity--card " data-my-activity-dashboard-target="dropdown" >
     <% @my_activities.each do |activity| %>
       <%= link_to activity_path(activity) do %>
         <div class="card-product">
@@ -19,15 +18,10 @@
           <div class="card-product-infos">
             <h2><%= activity.name %></h2>
             <p><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></p>
-            <p><%= activity.address %></p>
             <div>
-              <%= link_to activity_path(activity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn" do %>
-                <i class="fa-solid fa-delete-left"></i>
-              <% end %>
+              <%= link_to "Delete", activity_path(activity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn--delete" %>
 
-              <%= link_to edit_activity_path(activity), class: "btn" do %>
-                <i class="fa-solid fa-pen-to-square"></i>
-              <% end %>
+              <%= link_to "Edit", edit_activity_path(activity), class: "btn btn--edit"%>
             </div>
           </div>
         </div>
@@ -37,20 +31,20 @@
 </div>
 
 
-<!-- Activities that I own and booked by participants -->
-<div data-controller="my-activity-dashboard">
-  <% bookings_count = @my_activity_bookings.count %>
-  <h2 data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary mb-3"><%= bookings_count > 1 ? "My activity participants" : "My activity participan" %>(<%= bookings_count %>) <i class="fa-solid fa-square-caret-down"></i></h2>
 
+<!-- Activities that I own and booked by participants -->
+<div class="row justify-content-center m-2" data-controller="my-activity-dashboard">
+  <% bookings_count = @my_activity_bookings.count %>
+  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= bookings_count > 1 ? "My activity participants" : "My activity participant" %>(<%= bookings_count %>) <i class="fa-solid fa-square-caret-down"></i></button>
   <div class="d-none" data-my-activity-dashboard-target="dropdown" >
     <% @my_activity_bookings.each do |booking| %>
       <%= link_to activity_path(booking.activity_id) do %>
         <div class="card-product">
-          <% if booking.activity.photos.present? %>
-            <%= cl_image_tag booking.activity.photos.first.key, class: "carousel-image", alt: "Activity Photo" %>
+          <% if booking.participant.profile_image.attached? %>
+            <%= image_tag participant.profile_image, alt: "User Profile Image" %>
           <% else %>
           <!-- Use the default photo when no photos are available -->
-          <%= image_tag "bar.png", class: "carousel-image", alt: "Default Activity Photo" %>
+          <%= image_tag "Gym.png", class: "participant-image", alt: "Default Participant Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
           <% end %>
           <div class="card-product-infos">
             <% if booking.status == nil %>
@@ -61,9 +55,16 @@
             <h2><%= booking.activity.name %></h2>
             <p><%= "#{booking.participant.first_name} #{booking.participant.last_name}  #{message}" %></p>
 
-            <div>
-              <%= link_to "Review request", bookings_path, class: "btn btn-secondary" %>
-            </div>
+              <div>
+                <% if booking.status == nil %>
+                  <%= link_to "Decline", decline_booking_path(booking), method: :get, class: "btn btn--delete" %>
+                  <%= link_to "Accept", accept_booking_path(booking), method: :get, class: "btn btn--edit" %>
+                <% elsif booking.status == true %>
+                  <p>Approved</p>
+                <% else %>
+                  <p>Declined</p>
+                <% end %>
+              </div>
           </div>
         </div>
       <% end %>
@@ -72,10 +73,9 @@
 </div>
 
 <!--Activities you booked as participant-->
-<div data-controller="my-activity-dashboard">
+<div class="row justify-content-center m-2" data-controller="my-activity-dashboard">
   <% booking_count = @my_bookings.count %>
-  <h2 data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary mb-3"><%= booking_count > 1 ? "My bookings" : "My booking" %>(<%= booking_count %>) <i class="fa-solid fa-square-caret-down"></i></h2>
-
+  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= booking_count > 1 ? "My bookings" : "My booking" %>(<%= booking_count %>) <i class="fa-solid fa-square-caret-down"></i></button>
   <div class="d-none" data-my-activity-dashboard-target="dropdown" >
     <% @my_bookings.each do |booking| %>
       <%= link_to activity_path(booking.activity_id) do %>
@@ -89,7 +89,6 @@
           <div class="card-product-infos">
             <h2><%= booking.activity.name %></h2>
             <p><%= booking.activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></p>
-            <p><%= booking.activity.address %></p>
             <% if booking.status == nil %>
               <% status = "Waiting for approval" %>
             <% elsif booking.status == false %>
@@ -99,9 +98,7 @@
             <% end %>
             <p><%= status %></p>
             <div>
-              <%= link_to activity_path(booking.activity_id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn" do %>
-                <i class="fa-solid fa-delete-left"></i>
-              <% end %>
+              <%= link_to "Leave", activity_path(booking.activity_id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn--delete" %>
             </div>
           </div>
         </div>
