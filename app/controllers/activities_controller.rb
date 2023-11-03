@@ -66,6 +66,21 @@ class ActivitiesController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def show_details
+    @activity = Activity.find(params[:id])
+    @accepted_participants = @activity.participants.select { |participant| participant.bookings.exists?(status: true) }
+    respond_to do |format|
+      format.html do
+        # Render an HTML template or redirect to a different page
+        # You can add code here to render an HTML template or perform other actions.
+      end
+      format.json do
+        # Respond with JSON data for API requests
+        render json: { activity: @activity, participants: @accepted_participants }
+      end
+    end
+  end
+
   private
 
   def activity_params
