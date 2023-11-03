@@ -26,7 +26,7 @@ class BookingsController < ApplicationController
     @activity = Activity.find(params[:activity_id])
     @booking = Booking.new(activity: @activity, participant: current_user, status: nil)
     if @booking.save!
-      redirect_to dashboard_path
+      redirect_to activity_path(@activity)
     else
       render "activities/show"
     end
@@ -35,6 +35,6 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to dashboard_path
+    redirect_to activity_path(@booking.activity)
   end
 end
