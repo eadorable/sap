@@ -4,7 +4,7 @@
 <!--Activities you own-->
 <div class="row justify-content-center m-2" data-controller="my-activity-dashboard">
   <% activity_count = @my_activities.count %>
-  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= activity_count > 1 ? "My activities" : "My activity" %> (<%= activity_count %>) <i class="fa-solid fa-square-caret-down"></i></button>
+  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= activity_count > 1 ? "My activities" : "My activity" %> (<%= activity_count %>) <i class="fa-solid fa-square-caret-down" style="color: #b9f2df;"></i></button>
   <div class="d-none activity--card " data-my-activity-dashboard-target="dropdown" >
     <% @my_activities.each do |activity| %>
       <%= link_to activity_path(activity) do %>
@@ -18,7 +18,7 @@
           <div class="card-product-infos">
             <h2><%= activity.name %></h2>
             <p><%= activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></p>
-            <div>
+            <div class="m-2">
               <%= link_to "Delete", activity_path(activity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn--delete" %>
 
               <%= link_to "Edit", edit_activity_path(activity), class: "btn btn--edit"%>
@@ -31,11 +31,10 @@
 </div>
 
 
-
 <!-- Activities that I own and booked by participants -->
 <div class="row justify-content-center m-2" data-controller="my-activity-dashboard">
   <% bookings_count = @my_activity_bookings.count %>
-  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= bookings_count > 1 ? "My activity participants" : "My activity participant" %>(<%= bookings_count %>) <i class="fa-solid fa-square-caret-down"></i></button>
+  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= bookings_count > 1 ? "My activity participants" : "My activity participant" %>(<%= bookings_count %>) <i class="fa-solid fa-square-caret-down" style="color: #b9f2df;"></i></button>
   <div class="d-none" data-my-activity-dashboard-target="dropdown" >
     <% @my_activity_bookings.each do |booking| %>
       <%= link_to activity_path(booking.activity_id) do %>
@@ -44,27 +43,28 @@
             <%= image_tag booking.participant.profile_image, alt: "User Profile Image" %>
           <% else %>
           <!-- Use the default photo when no photos are available -->
-          <%= image_tag "Gym.png", class: "participant-image", alt: "Default Participant Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+          <%= image_tag "Gym.png", class: "", alt: "Default Participant Photo" %>
           <% end %>
           <div class="card-product-infos">
             <% if booking.status == nil %>
-             <% message = "is requesting to join." %>
+             <% message = "is requesting to join" %>
             <% else %>
               <% message = "" %>
             <% end %>
-            <h2><%= booking.activity.name %></h2>
             <p><%= "#{booking.participant.first_name} #{booking.participant.last_name}  #{message}" %></p>
+            <h2><%= booking.activity.name %></h2>
 
-              <div>
-                <% if booking.status == nil %>
-                  <%= link_to "Decline", decline_booking_path(booking), method: :get, class: "btn btn--delete" %>
-                  <%= link_to "Accept", accept_booking_path(booking), method: :get, class: "btn btn--edit" %>
-                <% elsif booking.status == true %>
-                  <p>Approved</p>
-                <% else %>
-                  <p>Declined</p>
-                <% end %>
+            <% if booking.status == nil %>
+              <div class="mt-3">
+                <%= link_to "Decline", decline_booking_path(booking), method: :get, class: "btn btn--delete" %>
+                <%= link_to "Accept", accept_booking_path(booking), method: :get, class: "btn btn--edit" %>
               </div>
+
+            <% elsif booking.status == true %>
+              <p>Approved</p>
+            <% else %>
+              <p>Declined</p>
+            <% end %>
           </div>
         </div>
       <% end %>
@@ -75,7 +75,7 @@
 <!--Activities you booked as participant-->
 <div class="row justify-content-center m-2" data-controller="my-activity-dashboard">
   <% booking_count = @my_bookings.count %>
-  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= booking_count > 1 ? "My bookings" : "My booking" %>(<%= booking_count %>) <i class="fa-solid fa-square-caret-down"></i></button>
+  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= booking_count > 1 ? "My bookings" : "My booking" %>(<%= booking_count %>) <i class="fa-solid fa-square-caret-down" style="color: #b9f2df;"></i></button>
   <div class="d-none" data-my-activity-dashboard-target="dropdown" >
     <% @my_bookings.each do |booking| %>
       <%= link_to activity_path(booking.activity_id) do %>
@@ -97,7 +97,7 @@
               <% status = "Approved" %>
             <% end %>
             <p><%= status %></p>
-            <div>
+            <div class="m-3">
               <%= link_to "Leave", activity_path(booking.activity_id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn--delete" %>
             </div>
           </div>
