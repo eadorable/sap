@@ -69,6 +69,7 @@ class ActivitiesController < ApplicationController
 
   def show_details
     @activity = Activity.find(params[:id])
+    @accepted_participants = @activity.participants.select { |participant| participant.bookings.find_by(activity_id: @activity.id).status === true }
     respond_to do |format|
       format.html do
         # Render an HTML template or redirect to a different page
