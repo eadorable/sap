@@ -68,7 +68,6 @@ class ActivitiesController < ApplicationController
   end
 
   def show_details
-    raise
     @activity = Activity.find(params[:id])
     respond_to do |format|
       format.html do
