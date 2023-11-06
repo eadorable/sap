@@ -29,6 +29,7 @@ class ActivitiesController < ApplicationController
     @activity_booked = current_user.bookings.where(status: true).find_by(activity_id: @activity.id)
     @activity_pending = current_user.bookings.where(status: nil).find_by(activity_id: @activity.id)
     @activity_declined = current_user.bookings.where(status: false).find_by(activity_id: @activity.id)
+    @accepted_participants = @activity.participants.select { |participant| participant.bookings.find_by(activity_id: @activity.id).status === true }
     @chatroom = @activity.chatroom
     @message = Message.new
     @bookings = @activity.bookings.where(status: true)
@@ -68,7 +69,6 @@ class ActivitiesController < ApplicationController
 
   def show_details
     @activity = Activity.find(params[:id])
-    @accepted_participants = @activity.participants.select { |participant| participant.bookings.exists?(status: true) }
     respond_to do |format|
       format.html do
         # Render an HTML template or redirect to a different page

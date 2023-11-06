@@ -37,47 +37,44 @@
       <h5><%= @activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
 
         <!-- Display the owner's photo and name -->
- <a href="<%= activity_details_path(@activity) %>">
-  <div class="owner-and-participants-info">
-    <!-- Display the owner's photo and name -->
-    <div class="owner-info">
-      <strong>Hosting:</strong>
-      <% if @activity.owner.profile_image.attached? %>
-        <%= image_tag @activity.owner.profile_image, class: "owner-photo", alt: "Owner's Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
-        <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
-      <% else %>
-        <!-- use a default photo if the owner doesn't have a photo -->
-        <%= image_tag "bar.png", class: "owner-photo", alt: "Default Owner Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
-        <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
-      <% end %>
-    </div>
+      <a href="<%= activity_details_path(@activity) %>">
+      <div class="owner-and-participants-info">
+        <!-- Display the owner's photo and name -->
+        <div class="owner-info">
+          <strong>Hosting:</strong>
+          <% if @activity.owner.profile_image.attached? %>
+            <%= image_tag @activity.owner.profile_image, class: "owner-photo", alt: "Owner's Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+            <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
+          <% else %>
+            <!-- use a default photo if the owner doesn't have a photo -->
+            <%= image_tag "bar.png", class: "owner-photo", alt: "Default Owner Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+            <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
+          <% end %>
+        </div>
 
-    <!-- Display only accepted participants -->
-    <div class="participants-info">
-      <strong>Participants:</strong>
-      <div class="participant-container-row">
-        <% accepted_participants = @activity.participants.select do |participant|
-          participant.bookings.exists?(status: true)
-        end %>
+        <!-- Display only accepted participants -->
+        <div class="participants-info">
+          <strong>Participants:</strong>
+          <div class="participant-container-row">
 
-        <% accepted_participants.shuffle.first(5).each do |participant| %>
-          <!-- Display accepted participants' images here -->
-          <div class="participant-container" style="display: inline-block;">
-            <div class="participant-photo">
-              <% if participant.profile_image.attached? %>
-                <%= image_tag participant.profile_image, class: "rounded-circle user-image", alt: "User Profile Image", style: "width: 40px; height: 40px;" %>
-              <% else %>
-                <!-- Use a default photo if the participant doesn't have a photo -->
-                <%= image_tag "Gym.png", class: "participant-image", alt: "Default Participant Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
-              <% end %>
-            </div>
-            <h5 class="participant-name" style="display: none;"><%= participant.first_name %></h5>
+            <% @accepted_participants.shuffle.first(5).each do |participant| %>
+              <!-- Display accepted participants' images here -->
+              <div class="participant-container" style="display: inline-block;">
+                <div class="participant-photo">
+                  <% if participant.profile_image.attached? %>
+                    <%= image_tag participant.profile_image, class: "rounded-circle user-image", alt: "User Profile Image", style: "width: 40px; height: 40px;" %>
+                  <% else %>
+                    <!-- Use a default photo if the participant doesn't have a photo -->
+                    <%= image_tag "Gym.png", class: "participant-image", alt: "Default Participant Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+                  <% end %>
+                </div>
+                <h5 class="participant-name" style="display: none;"><%= participant.first_name %></h5>
+              </div>
+            <% end %>
           </div>
-        <% end %>
+        </div>
       </div>
-    </div>
-  </div>
-</a>
+      </a>
 
       <h5 class="mt-2"><%= @activity.description %></h5>
       <h5>Difficulty:
@@ -127,9 +124,9 @@
     <div class="col-12">
       <!-- Mapbox container and data attributes -->
       <div class="map-container"
-           data-controller="map"
-           data-map-markers-value="<%= @markers.to_json %>"
-           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
   </div>
