@@ -1,7 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
-  border-bottom: 1px solid #ccc;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -32,7 +31,7 @@
 }
 
 .user-image {
-  margin-right: 10px; /* Adjust spacing as needed */
+  margin-right: 0px; /* Adjust spacing as needed */
 }
 
 .user-name {
@@ -41,4 +40,18 @@
 
 .nav-item-user:hover .user-name {
   display: block; /* Show the name on hover */
+}
+
+.non-border {
+  border: none !important;
+  padding-right: 0px !important;
+}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
 }
