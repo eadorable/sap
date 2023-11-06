@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-lewagon">
   <div class="container-fluid">
     <%= link_to activities_path, class: "navbar-brand" do %>
       <%= image_tag "logo.png" %>
@@ -7,26 +7,17 @@
       <% if user_signed_in? && current_user.profile_image.attached? %>
         <%= image_tag current_user.profile_image, class: "avatar dropdown-toggle", alt: "User Profile Image", style: "width: 45px; height: 45px;" %>
       <% else %>
-        <%= image_tag "bar.png", class: "rounded-circle user-image", alt: "Default Image", style: "width: 45px; height: 45px;" %>
+        <%= image_tag "user.png", class: "rounded-circle user-image", alt: "Default Image", style: "width: 45px; height: 45px;" %>
       <% end %>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav m-auto">
+      <ul class="navbar-nav navbar-items-right m-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", activities_path, class: "nav-link" %>
-          </li>
           <li class="nav-item active">
             <%= link_to "Edit Profile", edit_user_registration_path, class: "nav-link" %>
           </li>
           <li class="nav-item active">
-            <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item active">
-            <%= link_to "Create an activity", new_activity_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item active">
-          <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
+          <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
           </li>
           <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,7 +36,7 @@
           </li> -->
         <% else %>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
       </ul>

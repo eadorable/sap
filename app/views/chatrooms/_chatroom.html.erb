@@ -3,7 +3,8 @@
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
   data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
 >
-  <h1><%= "#{activity.name} on #{activity.date_time.strftime("%a %b %e at %l:%M %p")}" %></h1>
+  <h3 class="mb-0"><%= "#{activity.name}" %></h3>
+  <h4 class="mt-1 mb-1"><%= "#{activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M')}" %></h4>
 
   <div class="messages" data-chatroom-subscription-target="messages">
     <% chatroom.messages.each do |message| %>
@@ -15,12 +16,14 @@
     <% end %>
   </div>
 
-  <%= simple_form_for [chatroom, message],
-    html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
-    <%= f.input :content,
-    label: false,
-    placeholder: "Type your message here...",
-    wrapper_html: {class: "flex-grow-1"}%>
-    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-    <% end %>
+  <div class="d-flex chat-input">
+    <%= simple_form_for [chatroom, message],
+      html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
+      <%= f.input :content,
+      label: false,
+      placeholder: "Type your message here...",
+      wrapper_html: {class: "flex-grow-1"}%>
+      <%= f.submit "Send", class: "btn chat-button" %>
+      <% end %>
+  </div>
 </div>

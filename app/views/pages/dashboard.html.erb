@@ -41,7 +41,7 @@
       <%= link_to activity_path(booking.activity_id) do %>
         <div class="card-product">
           <% if booking.participant.profile_image.attached? %>
-            <%= image_tag participant.profile_image, alt: "User Profile Image" %>
+            <%= image_tag booking.participant.profile_image, alt: "User Profile Image" %>
           <% else %>
           <!-- Use the default photo when no photos are available -->
           <%= image_tag "Gym.png", class: "participant-image", alt: "Default Participant Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>

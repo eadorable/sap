@@ -99,20 +99,20 @@
       <!-- udpated Join Button -->
       <div class="btn-container">
       <% if @activity_booked %>
-        <%= link_to "Leave", booking_path(@activity_booked), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
-        <%= link_to "Chat", chatroom_path(@chatroom), class: "btn btn-outline-primary link-btn delete-edit" %>
+        <%= link_to "Leave", booking_path(@activity_booked), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-info link-btn delete-edit" %>
+        <%= link_to "Chat", chatroom_path(@chatroom), class: "btn btn-success link-btn delete-edit" %>
       <% elsif current_user == @activity.owner %>
-        <%= link_to "Chat", chatroom_path(@chatroom), class: "btn btn-outline-primary link-btn delete-edit" %>
+        <%= link_to "Chat", chatroom_path(@chatroom), class: "btn btn-success link-btn delete-edit" %>
       <% elsif @activity_pending %>
         <h5 class="status-text">Waiting for approval</h5>
-        <%= link_to "Cancel", booking_path(@activity_pending), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger link-btn delete-edit" %>
+        <%= link_to "Cancel", booking_path(@activity_pending), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-info link-btn delete-edit" %>
       <% elsif @activity_declined %>
         <h5 class="status-text">Declined</h5>
       <% elsif @bookings.present? && @activity.max_count.present? && @bookings.count >= @activity.max_count %>
         <h5 class="status-text">Sorry, we are fully booked</h5>
       <% else  %>
         <%= simple_form_for [@activity, @booking] do |f| %>
-          <%= f.submit "Join", class: "btn btn-outline-primary link-btn delete-edit" %>
+          <%= f.submit "Join", class: "btn btn-success link-btn delete-edit" %>
         <% end %>
       <% end %>
       </div>
