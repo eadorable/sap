@@ -11,13 +11,15 @@
 </div>
 
 <!-- Search button -->
+<div class="row">
 <%= form_tag(activities_path, method: 'get') do %>
-    <div class="search--bar mt-2">
+    <div class="search--bar pb-1">
         <%= label_tag %>
-        <%= text_field_tag :query, params[:query], class: "input mb-3", placeholder: "Search activities" %>
+        <%= text_field_tag :query, params[:query], class: "input", placeholder: "Search activities" %>
         <%= submit_tag 'Search', class: 'search--button' %>
     </div>
 <% end %>
+</div>
 
 <!-- Cards -->
 <div class="col-12">

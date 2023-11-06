@@ -44,7 +44,7 @@ class ActivitiesController < ApplicationController
     @activity.chatroom = Chatroom.new
     if @activity.save
       @activity.geocode
-      redirect_to activities_path
+      redirect_to activity_path(@activity)
     else
       render :new, status: :unprocessable_entity
     end

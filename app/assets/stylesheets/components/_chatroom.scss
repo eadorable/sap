@@ -46,3 +46,16 @@
       }
     }
 }
+
+.chat-input {
+  display: flex;
+  align-items: center;
+}
+
+.chat-input .chat-button {
+  align-self: flex-start;
+  background-color: #b7d4f1;
+  color: rgb(6, 6, 6);
+  margin-left: 3px;
+  margin-top: 0;
+}

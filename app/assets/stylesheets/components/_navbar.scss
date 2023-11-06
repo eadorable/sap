@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  border-bottom: 1px solid #ccc;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -54,4 +55,14 @@
   outline: none;
   border: none;
   box-shadow: none;
+}
+
+.navbar-items-right {
+  display: flex;
+  align-items: flex-end;
+  margin-right: 10px;
+}
+
+.nav-link {
+  margin-right: 5px;
 }
