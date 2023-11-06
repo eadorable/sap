@@ -19,21 +19,6 @@
           <li class="nav-item active">
           <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
           </li>
-          <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <% if current_user.profile_image.attached? %>
-                  <%= image_tag current_user.profile_image, class: "rounded-circle user-image", alt: "User Profile Image", style: "width: 40px; height: 40px;" %>
-              <% else %>
-                <%= image_tag "bar.png", class: "rounded-circle user-image", alt: "Default Image", style: "width: 40px; height: 40px;" %>
-              <% end %>
-            </a>
-            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userDropdown">
-              <span class="dropdown-header"><%= current_user.email %></span>
-              <div class="dropdown-divider"></div>
-              <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
-            </div>
-          </li> -->
         <% else %>
           <li class="nav-item">
             <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
