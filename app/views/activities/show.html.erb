@@ -41,13 +41,13 @@
       <div class="owner-and-participants-info">
         <!-- Display the owner's photo and name -->
         <div class="owner-info">
-          <strong>Hosting:</strong>
+          <strong>Organizer:</strong>
           <% if @activity.owner.profile_image.attached? %>
             <%= image_tag @activity.owner.profile_image, class: "owner-photo", alt: "Owner's Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
             <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
           <% else %>
             <!-- use a default photo if the owner doesn't have a photo -->
-            <%= image_tag "bar.png", class: "owner-photo", alt: "Default Owner Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+            <%= image_tag "user.png", class: "owner-photo", alt: "Default Owner Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
             <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
           <% end %>
         </div>
@@ -65,7 +65,7 @@
                     <%= image_tag participant.profile_image, class: "rounded-circle user-image", alt: "User Profile Image", style: "width: 40px; height: 40px;" %>
                   <% else %>
                     <!-- Use a default photo if the participant doesn't have a photo -->
-                    <%= image_tag "Gym.png", class: "participant-image", alt: "Default Participant Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
+                    <%= image_tag "user.png", class: "participant-image", alt: "Default Participant Photo", style: "width: 40px; height: 40px; border-radius: 50%; cursor: pointer;" %>
                   <% end %>
                 </div>
                 <h5 class="participant-name" style="display: none;"><%= participant.first_name %></h5>
