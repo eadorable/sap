@@ -77,7 +77,8 @@
       </a>
 
       <h5 class="mt-2"><%= @activity.description %></h5>
-      <h5>Difficulty:
+      <strong>Difficulty:</strong>
+      <h5>
         <% difficulty = @activity.difficulty %>
         <% max_difficulty = 5 %>
         <% (1..max_difficulty).each do |i| %>
