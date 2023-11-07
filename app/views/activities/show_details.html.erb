@@ -2,7 +2,14 @@
   <div class="col-md-12 col-lg-12 owner-card">
     <!-- Owner's card -->
     <div class="card-product mt-3">
-      <img src="<%= @activity.owner.profile_image.attached? ? url_for(@activity.owner.profile_image) : 'https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg' %>" />
+      <% if @activity.owner.profile_image.attached? %>
+        <%= image_tag @activity.owner.profile_image, alt: "Owner's Photo"  %>
+        <h5 class="owner-name" style="display: none;"><%= @activity.owner.profile_image %></h5>
+      <% else %>
+        <!-- use a default photo if the owner doesn't have a photo -->
+        <%= image_tag "owner.png", alt: "Default Owner Photo" %>
+        <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
+      <% end %>
       <div class="card-product-infos">
         <h2><%= @activity.owner.first_name %></h2>
         <p>Event Host</p>
@@ -17,7 +24,12 @@
     <% @accepted_participants.each do |participant| %>
       <div class="col-md-12 col-lg-12">
         <div class="card-product participant-card">
-          <img src="<%= participant.profile_image.attached? ? url_for(participant.profile_image) : 'https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg' %>" />
+          <% if participant.profile_image.attached? %>
+            <%= image_tag participant.profile_image, alt: "User Profile Image" %>
+          <% else %>
+            <!-- Use a default photo if the participant doesn't have a photo -->
+            <%= image_tag "participant.png", alt: "Default Participant Photo" %>
+          <% end %>
           <div class="card-product-infos">
             <h2><%= participant.first_name %></h2>
             <p>Participant</p>
