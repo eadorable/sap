@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12 col-lg-12 owner-card">
     <!-- Owner's card -->
-    <div class="card-product mt-3">
+    <div class="card-product-activity mt-3">
       <% if @activity.owner.profile_image.attached? %>
         <%= image_tag @activity.owner.profile_image, alt: "Owner's Photo"  %>
         <h5 class="owner-name" style="display: none;"><%= @activity.owner.profile_image %></h5>
@@ -23,7 +23,7 @@
   <div class="row participants-column">
     <% @accepted_participants.each do |participant| %>
       <div class="col-md-12 col-lg-12">
-        <div class="card-product participant-card">
+        <div class="card-product-activity participant-card">
           <% if participant.profile_image.attached? %>
             <%= image_tag participant.profile_image, alt: "User Profile Image" %>
           <% else %>
