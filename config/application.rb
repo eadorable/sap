@@ -22,6 +22,7 @@ module SeniorenAllTagPlus
     # in config/environments, which are processed later.
     #
     config.active_record.default_timezone = :local
+    config.time_zone = "Europe/Berlin" # or "Europe/Berlin"
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
   end
