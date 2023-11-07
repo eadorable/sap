@@ -1,13 +1,23 @@
-<h2>I am Chatroom</h2>
-<div class="chatroom--section">
+  <div class="msg-icon">
+      <h1>
+        <i class="fa-solid fa-message" style="color: #b9f2df;"></i>
+      </h1>
+  </div>
+
+<div class="activity--card ">
   <% @chatrooms.each do |chatroom| %>
     <%= link_to chatroom_path(chatroom) do %>
-    <ul>
-      <li>
-        <h3><%= chatroom.activity.name %></h3>
-        <p><%= chatroom.activity.address %></p>
-      </li>
-    </ul>
+    <div class="card-product">
+      <% if chatroom.activity.photos.present? %>
+          <%= cl_image_tag chatroom.activity.photos.first.key, class: "acticity-photo", alt: "activity photo" %>
+        <% else %>
+          <%= image_tag "logo.png" %>
+      <% end %>
+    <div class="card-product-infos">
+        <h4><%= chatroom.activity.name %></h4>
+        <p><%= chatroom.activity.address %>📌</p>
+    </div>
+    </div>
     <% end %>
 <% end %>
 </div>
