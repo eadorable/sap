@@ -43,7 +43,7 @@
   <div class="d-none" data-my-activity-dashboard-target="dropdown" >
     <% @my_activity_bookings.each do |booking| %>
       <%# <%= link_to activity_path(booking.activity_id) do %>
-        <div class="card-product" style="height: 100px">
+        <div class="card-product" style="height: 150px">
           <% if booking.participant.profile_image.attached? %>
             <div class="card-image-holder">
               <%= image_tag booking.participant.profile_image, alt: "User Profile Image" %>
