@@ -104,12 +104,12 @@
       <% elsif current_user == @activity.owner %>
         <%= link_to "Chat", chatroom_path(@chatroom), class: "btn btn-success link-btn delete-edit" %>
       <% elsif @activity_pending %>
-        <h5 class="status-text">Waiting for approval</h5>
+        <h5 class="status-text waiting"><strong>Waiting for approval</strong></h5>
         <%= link_to "Cancel", booking_path(@activity_pending), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger link-btn delete-edit" %>
       <% elsif @activity_declined %>
-        <h5 class="status-text">Declined</h5>
+        <h5 class="status-text decline"><strong>Declined</strong></h5>
       <% elsif @bookings.present? && @activity.max_count.present? && @bookings.count >= @activity.max_count %>
-        <h5 class="status-text">Sorry, we are fully booked</h5>
+        <h5 class="status-text full"><strong>Sorry, we are fully booked</strong></h5>
       <% else  %>
         <%= simple_form_for [@activity, @booking] do |f| %>
           <%= f.submit "Join", class: "btn btn-info link-btn delete-edit" %>
