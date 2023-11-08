@@ -6,7 +6,6 @@ export default class extends Controller {
   connect() {
     // console.log("Hello, Stimulus!", this.element);
     // console.log(this.Demo1Target);
-    console.log(this.Demo1Target);
   }
 
   send(event) {
@@ -15,6 +14,7 @@ export default class extends Controller {
   }
 
   myFunction() {
+    console.log("hello", this.currentTarget);
     this.dropdownTarget.classList.toggle("d-none");
   }
 }
