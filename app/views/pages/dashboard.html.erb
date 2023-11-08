@@ -38,7 +38,7 @@
 <!-- Activities that I own and booked by participants -->
 <div class="row justify-content-center m-2" data-controller="my-activity-dashboard">
   <% bookings_count = @my_activity_bookings.count %>
-  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= bookings_count > 1 ? "My activity participants" : "My activity participant" %>(<%= bookings_count %>) <i class="fa-solid fa-square-caret-down" style="color: #b9f2df;"></i></button>
+  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= bookings_count > 1 ? "My activity participants" : "My activity participant" %> (<%= bookings_count %>) <i class="fa-solid fa-square-caret-down" style="color: #b9f2df;"></i></button>
   <div class="d-none" data-my-activity-dashboard-target="dropdown" >
     <% @my_activity_bookings.each do |booking| %>
       <%# <%= link_to activity_path(booking.activity_id) do %>
@@ -85,7 +85,7 @@
 <!--Activities you booked as participant-->
 <div class="row justify-content-center m-2" data-controller="my-activity-dashboard">
   <% booking_count = @my_bookings.count %>
-  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= booking_count > 1 ? "My bookings" : "My booking" %>(<%= booking_count %>) <i class="fa-solid fa-square-caret-down" style="color: #b9f2df;"></i></button>
+  <button data-action="click->my-activity-dashboard#showMyActivity" class="btn btn-secondary m-2"><%= booking_count > 1 ? "My bookings" : "My booking" %> (<%= booking_count %>) <i class="fa-solid fa-square-caret-down" style="color: #b9f2df;"></i></button>
   <div class="d-none" data-my-activity-dashboard-target="dropdown" >
     <% @my_bookings.each do |booking| %>
       <%# <%= link_to activity_path(booking.activity_id) do %>

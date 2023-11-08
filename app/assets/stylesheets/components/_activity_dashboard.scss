@@ -6,8 +6,8 @@
 
 .btn--delete {
   color:black;
-  border: solid 1px #b7d4f1;
-  background-color: #b7d4f1;
+  border: solid 1px #fca8a8;
+  background-color: #fca8a8;
   border-radius: 10px;
   padding: 10px 15px;
 }
@@ -27,6 +27,7 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   display: flex;
   height: 150px;
+  width: 100%;
   align-items: center;
   margin-bottom: 10px;
 }
