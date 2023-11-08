@@ -1,7 +1,7 @@
 <!-- Select category -->
 <div data-controller="bloober" class="accordions--categories mt-3">
-  <button data-action="click->bloober#myFunction" class="btn btn-secondary mb-3">
-    Select a category
+  <button data-action="click->bloober#myFunction" class="btn btn-secondary my-1">
+    Category
     <i class="fa-solid fa-square-caret-down"  style="color: #b9f2df"></i>
   </button>
     <div id="Demo1" class="w3-container d-none" data-bloober-target="dropdown">
@@ -18,7 +18,7 @@
 <%= form_tag(activities_path, method: 'get') do %>
     <div class="search--bar pb-1">
         <%= label_tag %>
-        <%= text_field_tag :query, params[:query], class: "input", placeholder: "What are you looking for" %>
+        <%= text_field_tag :query, params[:query], class: "input", placeholder: "Any activities?" %>
         <%= submit_tag 'Search', class: 'search--button' %>
     </div>
 <% end %>

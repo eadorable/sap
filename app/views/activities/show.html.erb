@@ -55,7 +55,7 @@
         <!-- Display only accepted participants -->
         <div class="participants-info">
           <strong>Participants:</strong>
-          <div class="participant-container-row">
+          <div class="participant-container-row py-1">
 
             <% @accepted_participants.shuffle.first(5).each do |participant| %>
               <!-- Display accepted participants' images here -->
@@ -99,20 +99,20 @@
       <!-- udpated Join Button -->
       <div class="btn-container">
       <% if @activity_booked %>
-        <%= link_to "Leave", booking_path(@activity_booked), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-info link-btn delete-edit" %>
+        <%= link_to "Leave", booking_path(@activity_booked), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger link-btn delete-edit" %>
         <%= link_to "Chat", chatroom_path(@chatroom), class: "btn btn-success link-btn delete-edit" %>
       <% elsif current_user == @activity.owner %>
         <%= link_to "Chat", chatroom_path(@chatroom), class: "btn btn-success link-btn delete-edit" %>
       <% elsif @activity_pending %>
         <h5 class="status-text waiting"><strong>Waiting for approval</strong></h5>
-        <%= link_to "Cancel", booking_path(@activity_pending), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-info link-btn delete-edit" %>
+        <%= link_to "Cancel", booking_path(@activity_pending), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger link-btn delete-edit" %>
       <% elsif @activity_declined %>
         <h5 class="status-text decline"><strong>Declined</strong></h5>
       <% elsif @bookings.present? && @activity.max_count.present? && @bookings.count >= @activity.max_count %>
         <h5 class="status-text full"><strong>Sorry, we are fully booked</strong></h5>
       <% else  %>
         <%= simple_form_for [@activity, @booking] do |f| %>
-          <%= f.submit "Join", class: "btn btn-success link-btn delete-edit" %>
+          <%= f.submit "Join", class: "btn btn-info link-btn delete-edit" %>
         <% end %>
       <% end %>
       </div>
@@ -141,7 +141,7 @@
     <h4 class="m-1">Similar Activities</h4>
     <div class="row">
       <% @activities.where(category: @activity.category).where.not(id: @activity.id).each do |activity| %>
-        <div class="col-12 col-md-4 mb-2 mt-0 m-0">
+        <div class="col-12 col-md-4 mb-1 mt-0 m-0">
           <%= link_to activity_path(activity) do %> <!-- Wrap the entire card content in a link -->
             <div class="activity-card mb-2">
               <div class="card-body">

@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="card mt-3 mb-3 pb-3 p-3">
-      <h3 class="card-title text-center mb-3 pt-2">Edit Activity</h3>
+    <div class="mt-3 mb-0 pb-3 p-3">
+
       <%= simple_form_for(@activity) do |f| %>
         <% levels = ['1 - Very Easy', '2 - Easy', '3 - Moderate', '4 - Difficult', '5 - Very Difficult'] %>
         <div class="row mb-3">
           <div class="col-md-12">
-              <div><%= f.label :Category, required: true %></div>
+              <div class="pb-1"><%= f.label :Category, required: true %></div>
               <% Category.all.each do |category| %>
                 <div class="form-check">
                   <%= f.radio_button :category_id, category.id %>
@@ -31,7 +31,7 @@
         <%= f.input :max_count %>
         <%= f.input :description %>
         <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-        <%= f.submit "Update", class: "btn btn-success link-btn delete-edit" %>
+        <%= f.submit "Save", class: "btn btn-success link-btn delete-edit" %>
       <% end %>
     </div>
   </div>
