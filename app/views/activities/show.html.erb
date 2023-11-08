@@ -76,8 +76,9 @@
       </div>
       </a>
 
-      <h5 class="mt-2"><%= @activity.description %></h5>
-      <strong>Difficulty:</strong>
+      <h5 class="mt-2 mb-0"><%= @activity.description %></h5>
+      <div class="difficulty-container mt-0">
+      <strong class="difficulty-label">Difficulty:</strong>
       <h5>
         <% difficulty = @activity.difficulty %>
         <% max_difficulty = 5 %>
@@ -88,6 +89,7 @@
             <i class="fa-regular fa-circle"></i>
           <% end %>
         <% end %>
+      </div>
       </h5>
       <h5>What to bring: <%= @activity.equipment %></h5>
       <% else %>
