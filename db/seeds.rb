@@ -44,7 +44,7 @@ class Time
 end
 
 def create_random_date_time
-  date = Faker::Date.between(from: '2023-11-02', to: '2023-11-30')
+  date = Faker::Date.between(from: '2023-11-11', to: '2023-11-30')
   Time.new(date.year, date.month, date.day, rand(10..16).to_s, %w[00 30].sample)
 end
 
