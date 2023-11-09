@@ -109,14 +109,14 @@
             <% if booking.status == nil %>
               <p class="waiting"><strong>Waiting for approval</strong></p>
               <div class="mt-2">
-                <%= link_to "Cancel", activity_path(booking.activity_id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn--delete" %>
+                <%= link_to "Cancel", booking_path(booking.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn--delete" %>
               </div>
             <% elsif booking.status == false %>
               <p class="decline"><strong>Declined</strong></p>
             <% else %>
               <p class="accept"><strong>Approved</strong></p>
               <div class="mt-2">
-                <%= link_to "Leave", activity_path(booking.activity_id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn--delete" %>
+                <%= link_to "Leave", booking_path(booking.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn--delete" %>
               </div>
             <% end %>
           </div>
