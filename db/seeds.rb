@@ -67,7 +67,7 @@ gardening_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Gardening gloves, a sun hat, and your green thumb',
   category: community,
-  max_count: 5,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -154,7 +154,7 @@ museum_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Apron or old clothes',
   category: arts,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -172,7 +172,7 @@ culinary_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Appetite for delicious food',
   category: learning,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -190,7 +190,7 @@ football_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Sports gear and appropriate clothing',
   category: fitness,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -208,7 +208,7 @@ retreat_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Yoga mat',
   category: fitness,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -226,7 +226,7 @@ care_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Comfortable clothing for volunteering',
   category: community,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -244,7 +244,7 @@ language_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Openness to new languages and experiences',
   category: learning,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -262,7 +262,7 @@ melody_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Love for live music',
   category: entertainment,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -280,7 +280,7 @@ mingle_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Friendly and open attitude',
   category: community,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -302,7 +302,7 @@ support_circle_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Openness to share and listen',
   category: support,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -323,7 +323,7 @@ dance_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Dance-appropriate clothing and shoes',
   category: entertainment,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -341,7 +341,7 @@ adoption_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Pet adoption application',
   category: support,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -359,7 +359,7 @@ tennis_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Tennis racket, tennis balls, tennis shoes',
   category: fitness,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -377,7 +377,7 @@ wellness_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'An open mind for learning and self-care',
   category: wellness,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -413,7 +413,7 @@ symposium_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Any relevant medical or caregiving documents',
   category: support,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -485,7 +485,7 @@ story_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Your favorite story or memory to share',
   category: community,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -503,7 +503,7 @@ birdwatch_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Binoculars, bird guidebook, and comfortable walking shoes',
   category: outdoors,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -521,7 +521,7 @@ pickinck_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Picnic basket, comfortable picnic blanket, sunscreen, and your favorite picnic snacks',
   category: outdoors,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -539,7 +539,7 @@ hiking_expedition_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Hiking boots, water bottle, walking stick, and a sense of adventure',
   category: outdoors,
-  max_count: 5,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -556,7 +556,7 @@ book_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'The book of the month and your insights',
   category: learning,
-  max_count: 5,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -574,7 +574,7 @@ woodwork_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Your creativity and imagination',
   category: learning,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -592,7 +592,7 @@ pottery_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'An apron and your artistic vision',
   category: arts,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -610,7 +610,7 @@ board_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Favorite board games or card decks',
   category: entertainment,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -628,7 +628,7 @@ yoga_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Comfortable clothing for yoga or meditation',
   category: wellness,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -646,7 +646,7 @@ hobby_gathering_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'Your hobby equipment or materials',
   category: entertainment,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
@@ -664,7 +664,7 @@ painting_activity = Activity.new(
   difficulty: rand(1..5),
   equipment: 'A smock or apron to protect your clothing',
   category: arts,
-  max_count: 6,
+  max_count: 10,
   chatroom: Chatroom.new
   )
 
