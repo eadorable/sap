@@ -11,8 +11,8 @@
         <h5 class="owner-name" style="display: none;"><%= @activity.owner.first_name %></h5>
       <% end %>
       <div class="card-product-infos">
-        <h2><%= @activity.owner.first_name %></h2>
-        <p>Event Host</p>
+        <h2><%= @activity.owner.first_name %> <%= @activity.owner.last_name %></h2>
+        <p>Activity host</p>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
             <%= image_tag "participant.png", alt: "Default Participant Photo" %>
           <% end %>
           <div class="card-product-infos">
-            <h2><%= participant.first_name %></h2>
+            <h2><%= participant.first_name %> <%= participant.last_name %></h2>
             <p>Participant</p>
           </div>
         </div>
