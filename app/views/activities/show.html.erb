@@ -33,8 +33,11 @@
     <div class="col-12 col-md-8 mt-2 row">
       <!-- Activity Description -->
       <% if @activity.present? %>
-      <h4 class="my-1 mt-1 section-title"><%= @activity.name %></h4>
-      <h5><%= @activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
+      <h4 class="my-1 section-title"><%= @activity.name %></h4>
+      <h5 class="my-1"><%= @activity.date_time.strftime('%^a, %d %^b, %Y at %H:%M') %></h5>
+
+            <!-- Full Address -->
+      <h6 class="mt-1 mb-2"><%= @activity.address %></h6>
 
         <!-- Display the owner's photo and name -->
       <a href="<%= activity_details_path(@activity) %>">
@@ -115,33 +118,30 @@
           <%= f.submit "Join", class: "btn btn-info link-btn delete-edit" %>
         <% end %>
       <% end %>
+        <!-- Map -->
+        <div class="mt-4">
+          <!-- Mapbox container and data attributes -->
+          <div class="map-container"
+              data-controller="map"
+              data-map-markers-value="<%= @markers.to_json %>"
+              data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Full Address -->
-<h6 class="mt-4 mb-1 m-2"><%= @activity.address %></h6>
-  <!-- Map -->
-  <div class="row my-0 mt-0">
-    <div class="col-12">
-      <!-- Mapbox container and data attributes -->
-      <div class="map-container"
-          data-controller="map"
-          data-map-markers-value="<%= @markers.to_json %>"
-          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    </div>
-  </div>
+
 
 <!-- Display additional activities -->
 
 <div class="justify-content-center mt-4">
   <div class="col-12">
-    <h4 class="m-1">Similar Activities</h4>
+    <h4 class="mb-1" style="text-align: center;">Similar Activities</h4>
     <div class="row">
       <% @activities.where(category: @activity.category).where.not(id: @activity.id).each do |activity| %>
-        <div class="col-12 col-md-4 mb-1 mt-0 m-0">
+        <div class="col-12 col-md-4 mt-1">
           <%= link_to activity_path(activity) do %> <!-- Wrap the entire card content in a link -->
             <div class="activity-card mb-2">
               <div class="card-body">
