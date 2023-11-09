@@ -20,7 +20,8 @@ users_data = [
   { first_name: 'Emma', last_name: 'Rünzel', email: 'emma@example.com', password: '123456' },
   { first_name: 'James', last_name: 'Hibbeard', email: 'james@example.com', password: '123456' },
   { first_name: 'Adam', last_name: 'Tomczyk', email: 'adam@example.com', password: '123456' },
-  { first_name: 'Michelle', last_name: 'Rodriguez', email: 'michelle@example.com', password: '123456' }]
+  { first_name: 'Michelle', last_name: 'Rodriguez', email: 'michelle@example.com', password: '123456' },
+  { first_name: 'Emre', last_name: 'Ebeturk', email: 'emre@example.com', password: '123456' }]
 
 # Create an empty array to store the users
 users = []
